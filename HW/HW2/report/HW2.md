@@ -80,7 +80,7 @@ import numpy as np
 n = 1024    # data size
 X = np.random.normal(0, 1, n) # 每一个点的X值
 Y = np.random.normal(0, 1, n) # 每一个点的Y值
-C = np.arctan2(Y,X) # for color value
+C = np.arctan2(Y, X) # for color value
 
 #########  作图过程  #########
 plt.scatter(X, Y, s=50, c=C, alpha=.6)
@@ -92,6 +92,7 @@ plt.xlabel("xlabel")
 plt.ylabel("ylabel")
 
 plt.grid()
+plt.colorbar()
 plt.title("Scatter plot")
 
 plt.show()
@@ -276,3 +277,191 @@ plt.show()
 
 ![png](output_11_0.png)
 
+
+### 参考文献
+
+0. [Matplotlib官方文档](https://matplotlib.org/)
+1. [莫烦Python - Matplotlib教程](https://morvanzhou.github.io/tutorials/data-manipulation/plt/)
+
+# 题目二：动画和隐喻的应用
+
+
+## 题目描述
+
+Find/design a dataset and visualize the data using either the techniques of animation or metaphor, or both of them. Please take a few sentences to describe the data information, background, and visualization effects for analysis. Submit your data and code.（做一个画图用到动画功能或（和）隐喻可视化功能）。
+
+
+## 解答
+
+代码如下，保存的动画在作业文件夹中。
+
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
+
+#########  数据生成  #########
+fig, ax = plt.subplots()
+A = range(-5,5)
+xdata, ydata = [], []
+xdata2, ydata2 = [], []
+xdata3, ydata3 = [], []
+
+ln1, ln2, ln3, ln4 = ax.plot([], [], 'r-',
+                         [], [], 'b-',
+                         [], [], 'y-',
+                         [], [], 'c-',
+                         animated=False) #animated is associated with blit
+
+def init():
+    ax.set_xlim(0, 10)
+    ax.set_ylim(-6, 6)
+    return ln1,ln2,ln3,ln4
+
+def update(i): #i is an int from 0 to frames-1, and keep looping
+    ax.set_xlim(i/250, 10+i/250)
+    global A
+    iter = int(i/50)
+    
+    if i==0:
+        xdata.clear()
+        ydata.clear()
+        xdata2.clear()
+        ydata2.clear()
+        iter = 0
+        
+    xdata.append(i/50)
+    ydata.append(A[iter])
+    xdata2.append(i/50)
+    ydata2.append(np.cos(i/100))
+    xdata3.append(i/50)
+    ydata3.append(np.cos(i/100-np.pi))
+    ln1.set_data(xdata, ydata)
+    ln2.set_data(xdata2, ydata2)
+    ln3.set_data(xdata3, ydata3)
+    x = np.linspace(0, 10, 1000)
+    y = np.sin(np.pi*(x + i/100))
+    ln4.set_data(x, y)
+    iter += 1
+    return ln1, ln2, ln3, ln4
+
+
+#########  作图过程  #########
+def main():
+    ani = FuncAnimation(fig, update, frames = 500, interval = 20,
+                    init_func=init, blit=False)
+    ani.save('animation.mp4', writer='ffmpeg', fps=30)
+    plt.show()
+
+if __name__ == '__main__':
+    main()
+```
+
+# 题目三：GDP数据可视化
+
+
+## 题目描述
+
+Visualize the GDP values and changes of GDP of the countries for the past 20 years. The data can be download from http://www.gapminder.org.
+
+
+## 解答
+
+
+```python
+import pandas as pd
+import numpy as np
+from matplotlib import pyplot as plt
+
+#########  数据生成  #########
+GDP_raw = pd.read_csv("GDP.csv", index_col=0, skiprows=4)
+
+year = list(range(1996,2017))
+cty = ["China", "Australia", "Canada", "Japan", "United Kingdom"]
+GDP = GDP_raw[[str(x) for x in year]].loc[cty]
+
+#########  作图过程  #########
+fig = plt.figure() 
+markerSymbols = ['o-', 'v-', '^-', '<-', '>-', 's-', 'p-', 'P-']
+
+for i in range(len(cty)):
+    plt.plot(year, GDP.values[i], markerSymbols[i])
+
+plt.title("GDP Value of certain countries")
+plt.ylabel("GDP value")
+plt.xlabel("year")
+plt.xticks(range(1996,2017,2))
+plt.legend(cty, loc='upper left')
+
+plt.grid()
+plt.show()
+```
+
+
+![png](output_16_0.png)
+
+
+# 题目四：直方图函数
+
+
+## 题目描述
+
+Program a function for computing the histogram of a data set of N dimension. The function should include the definition/setting of (1) number of bins, (2) width(s) of bin(s), (3) frequencies of each bin, and (4) the dimension of the input data. Test the function using a dataset and visualize the result using bar plot. Submit your Python code and test data.
+
+
+## 解答
+
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def my_histogram(data, binNum, dim=None):
+    # 若为一维或高维（>1）则选取一维做频率直方图
+    data = data if dim is None else data[dim]
+    dataMin, dataMax = min(data), max(data)
+    
+    # 构造直方图位置列表
+    bins = np.linspace(dataMin, dataMax, binNum)
+    if binNum == 1:
+        N = np.array([len(data)])
+        width = dataMax - dataMin
+    else:
+        N = np.zeros(binNum, dtype=np.int64)
+        width = (dataMax - dataMin) / (binNum - 1)
+        for d in data:
+            # 对小范围内的数据统计频率
+            N[int((d - dataMin)//width)] += 1
+            
+        # 把最大值归为最后一个区间
+        N[-2] += 1
+    return (N[:-1], bins, width)
+            
+        
+#########  数据生成  #########
+# 让数据采样足够大以此展现出数据分布的随机（平均）性
+n = 10000
+data = np.array([np.random.rand(n),
+                 np.random.rand(n),
+                 np.random.rand(n)])
+
+#########  作图过程  #########
+# 选取第2维
+N, pos, width = my_histogram(data, 10, dim=2)
+
+# 设置图片大小 方便横坐标足够显示清楚
+plt.figure(figsize=(12,7))
+
+# 设置横坐标为数据区间
+xtick = ["%.2f" % pos[i] + ' ~ ' + "%.2f" % pos[i+1] for i in range(len(pos)-1)]
+
+plt.bar(xtick, N, width=width*5, color='b', alpha=0.5)
+
+plt.title("Histogram plot")
+plt.show()
+```
+
+
+![png](output_18_0.png)
