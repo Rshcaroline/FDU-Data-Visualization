@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.animation as animation
 import pandas as pd
+import random
+import matplotlib.cm as cm
 
 #########  数据生成  #########
 loc = pd.read_csv("location.csv")
@@ -14,15 +16,7 @@ cty = ["China", "Australia", "Canada", "Japan", "United Kingdom", "Italy",
 
 GDP = GDP_raw[[str(x) for x in year]].loc[cty]
 
-"""
-on : label or list
-        Field names to join on. Must be found in both DataFrames. If on is
-        None and not merging on indexes, then it merges on the intersection of
-        the columns by default.
-right_index : boolean, default False
-        Use the index from the right DataFrame as the join key. Same caveats as
-        left_index
-"""
+# 采用类似数据库的合并操作 将GDP数据和国家的经纬度数据合并成一个新的表
 GDP = pd.merge(GDP, loc, left_index=True, right_on="Country Name")
 GDP = GDP.set_index("Country Name")
 
@@ -30,6 +24,7 @@ GDP = GDP.set_index("Country Name")
 fig = plt.figure(figsize=(12, 8))
 lons, lats = [], []
 
+# 画出世界地图
 def initialize_map():
     m = Basemap()
     m.drawcoastlines()
@@ -40,22 +35,33 @@ def initialize_map():
     m.drawparallels(np.arange(-90, 90, 30))
     return m
 
-def init():
-    return point,
-
 # animation function.  This is called sequentially
 def animate(i):
-    plt.clf()
+    global cty
 
+    # 设置图例和散点颜色
+    C = cm.rainbow(np.linspace(0, 1, len(cty)))
+    ctys=['$'+x+'$' for x in cty]
+
+    # 每新的一年 清空画布上的散点并画出世界地图
+    plt.clf()
     m = initialize_map()
+
+    # 取出每一年的GDP数据 将GDP的相对大小当作散点的大小
     GDP_year = GDP[str(1996+i)].values
-    size = (GDP_year/np.max(GDP_year))*100
+    size = (GDP_year/np.max(GDP_year))*300
     x, y = m(GDP['lons'].values, GDP['lats'].values)
-    m.scatter(x, y, s=size, color='r', alpha=0.7)
+
+    for i in range(len(cty)):
+      m.scatter(x[i], y[i], s=size[i], label=ctys[i], c=C[i], alpha=0.7)
+
+    # 每次都要执行
+    plt.title('GDP Map animation')
+    plt.legend()
+
     return m,
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
 anim = animation.FuncAnimation(fig, animate, len(year), interval=100, blit=False)
 
-plt.title('GDP Map animation')
 plt.show()
