@@ -41,7 +41,7 @@ def animate(i):
 
     # 设置图例和散点颜色
     C = cm.rainbow(np.linspace(0, 1, len(cty)))
-    ctys=['$'+x+'$' for x in cty]
+    # ctys=['$'+x+'$' for x in cty]
 
     # 每新的一年 清空画布上的散点并画出世界地图
     plt.clf()
@@ -52,11 +52,11 @@ def animate(i):
     size = (GDP_year/np.max(GDP_year))*300
     x, y = m(GDP['lons'].values, GDP['lats'].values)
 
-    for i in range(len(cty)):
-      m.scatter(x[i], y[i], s=size[i], label=ctys[i], c=C[i], alpha=0.7)
+    for ct in range(len(cty)):
+      m.scatter(x[ct], y[ct], s=size[ct], label=cty[ct], c=C[ct], alpha=0.7)
 
     # 每次都要执行
-    plt.title('GDP Map animation')
+    plt.title('GDP Map animation of Year ' + str(1996+i))
     plt.legend()
 
     return m,
