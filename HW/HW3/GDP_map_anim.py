@@ -4,16 +4,31 @@ import numpy as np
 import matplotlib.animation as animation
 import pandas as pd
 
-df_loc = pd.read_csv("data/location.csv")
-df_gdp = pd.read_csv("data/GDP.csv", skiprows=4)
+#########  数据生成  #########
+loc = pd.read_csv("location.csv")
+GDP_raw = pd.read_csv("GDP.csv", index_col=0, skiprows=4)
 
-print(df_loc.head())
-print(df_gdp.head())
-df_gdp = pd.merge(df_loc, df_gdp, on="Country Name")
+year = list(range(1996,2017))
+cty = ["China", "Australia", "Canada", "Japan", "United Kingdom", "Italy",
+       "Singapore", "Germany", "France", "Switzerland"]
 
-print(df_gdp.head())
+GDP = GDP_raw[[str(x) for x in year]].loc[cty]
 
-plt.figure(figsize=(12, 8))
+"""
+on : label or list
+        Field names to join on. Must be found in both DataFrames. If on is
+        None and not merging on indexes, then it merges on the intersection of
+        the columns by default.
+right_index : boolean, default False
+        Use the index from the right DataFrame as the join key. Same caveats as
+        left_index
+"""
+GDP = pd.merge(GDP, loc, left_index=True, right_on="Country Name")
+GDP = GDP.set_index("Country Name")
+
+#########  作图过程  #########
+fig = plt.figure(figsize=(12, 8))
+lons, lats = [], []
 
 def initialize_map():
     m = Basemap()
@@ -30,21 +45,17 @@ def init():
 
 # animation function.  This is called sequentially
 def animate(i):
-    global size
-    global m
-    lons, lats =  np.random.random_integers(-130, 130, 2)
-    x,y = m(lons, lats)
-    point.set_offsets(np.array([[x, y]]))
-    point.set_sizes(size*i*100)
-    return point,
+    plt.clf()
 
-m = initialize_map()
-x,y = m([0], [0])
-size = np.array([10])
-point = m.scatter(x, y, s=0, alpha = 0.5)
+    m = initialize_map()
+    GDP_year = GDP[str(1996+i)].values
+    size = (GDP_year/np.max(GDP_year))*100
+    x, y = m(GDP['lons'].values, GDP['lats'].values)
+    m.scatter(x, y, s=size, color='r', alpha=0.7)
+    return m,
 
 # call the animator.  blit=True means only re-draw the parts that have changed.
-anim = animation.FuncAnimation(plt.gcf(), animate, init_func=init,
-                               frames=20, interval=1000, blit=True)
+anim = animation.FuncAnimation(fig, animate, len(year), interval=100, blit=False)
 
+plt.title('GDP Map animation')
 plt.show()
