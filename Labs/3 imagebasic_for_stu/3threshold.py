@@ -7,7 +7,7 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
 
-fold='C:/Users/zxh/work/0_projects/DataV_Python/5image/'
+fold='./'
 img=Image.open(fold+'brain.png')
 
 

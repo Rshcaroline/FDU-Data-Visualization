@@ -19,7 +19,7 @@ print(img.format) #图片的格式
 #img.Save(fold+'test.jpg') # save
 
 
-fold='C:/Users/zxh/work/0_projects/DataV_Python/5image/'
+fold='./'
 img=Image.open(fold+'feifei.jpg')
 gray=img.convert('L')   #转换成灰度的Image格式
 r,g,b=img.split()   #分离三通道

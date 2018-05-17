@@ -2,7 +2,7 @@ from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
 
-fold='C:/Users/zxh/work/0_projects/DataV_Python/5image/'
+fold='./'
 oimg=Image.open(fold+'brain.png')
 img=np.array(oimg)
 
