@@ -98,46 +98,6 @@ myChina('aeqd')
 用地震的级数来决定散点图的大小，级数越大，散点越大，暂时没有用到震深和地震站数两个指标。
 
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-from mpl_toolkits.basemap import Basemap
-import pandas as pd
-
-#########  数据生成  #########
-posi = pd.read_csv("quakes.csv")
-
-lat = np.array(posi["lat"])                         # 获取维度值
-long = np.array(posi["long"])                        # 获取经度值
-depth = np.array(posi["depth"], dtype=float)         # 获取震深，转化为numpy浮点型
-meg = np.array(posi["mag"], dtype=float)             # 获取级数，转化为numpy浮点型
-stations = np.array(posi["stations"], dtype=float)   # 获取地震站数，转化为numpy浮点型
-
-size=(meg/np.max(meg))    # 绘制散点图时图形的大小，如果之前meg不转换为浮点型会没有大小不一的效果
-
-#########  作图过程  #########
-m = Basemap(width=12000000,height=8000000, projection='stere', 
-            lat_0=-20, lon_0=140)
-
-m.drawcoastlines(linewidth=1) # 把海岸线画上
-m.drawcountries(linewidth=1)  # 画出国家 线宽为1.5
-m.fillcontinents(color='coral', lake_color='aqua')  # 填充大陆
-m.drawmapboundary(fill_color='aqua')
-
-x, y = m(long, lat)
-
-m.scatter(x, y, s=size, color='r', alpha=0.5)
-
-parallels = np.arange(-90, 90, 30.) 
-m.drawparallels(parallels, labels=[1,0,0,0], fontsize=10) # 绘制纬线
-meridians = np.arange(-180.,181.,60.)
-m.drawmeridians(meridians, labels=[0,0,0,1], fontsize=10) # 绘制经线
-
-plt.title("Earthquake Distribution")
-plt.show()
-```
-
-
 
 
 ![png](output_4_1.png)
