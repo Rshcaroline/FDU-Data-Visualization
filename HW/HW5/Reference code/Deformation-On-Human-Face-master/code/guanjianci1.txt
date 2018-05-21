@@ -1,0 +1,10 @@
+1: baggio
+2: cup
+3: club
+4: player
+5: football
+6: team
+7: season
+8: league
+9: nfl
+10: match

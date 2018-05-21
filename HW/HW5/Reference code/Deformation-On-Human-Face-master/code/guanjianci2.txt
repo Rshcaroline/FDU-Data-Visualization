@@ -1,0 +1,10 @@
+1: party
+2: election
+3: government
+4: political
+5: disraeli
+6: anarchist
+7: gandhi
+8: president
+9: socialist
+10: parliament

@@ -1,0 +1,312 @@
+#!/usr/bin/python3
+import sys
+import numpy as np
+from PIL import Image
+#import cv2
+
+#from morphing import morphingAction
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
+import matplotlib.image as mpimg
+import matplotlib.pyplot as plt
+
+from PySide.QtGui import (QWidget, QToolTip, 
+    QPushButton, QApplication,QLabel,QHBoxLayout,QVBoxLayout,QComboBox,QSlider)
+from PySide import QtGui
+from PySide.QtGui import QIcon,QFont,QPixmap,QImage
+from PySide.QtCore import QCoreApplication,Qt
+
+from transformation import local_affine_transformation,affine_points_MLS,preprocess
+from util import *
+def rgb2bgr(img):
+        b,g,r,a = cv2.split(img)
+        return cv2.merge([r,g,b,a])
+
+#The GUI class we construct.
+class TransformationFaceUI(QWidget):
+
+    def __init__(self,oriPath,protoPath,oriPointsPath,protoPointsPath,regionsPath):
+        super(TransformationFaceUI,self).__init__()
+        #Initialize the data or object we need
+        
+        localParas,points = preprocess(oriPath,protoPath,oriPointsPath,protoPointsPath,regionsPath,'L2')
+        self.oriImg,self.protoImg,self.regionsPoints,self.is_in_regions_fun,self.distance_funs,self.affine_funs = localParas
+        self.oriPlotDict,self.protoPlotDict,self.oriPoints ,self.protoPoints = points
+        self.oriPoints = np.array(self.oriPoints)
+        self.protoPoints = np.array(self.protoPoints)
+        self.e = 2
+        self.alpha = 1
+        self.oriPath = oriPath
+        self.protoPath = protoPath
+        self.oriPointsPath = oriPointsPath
+        self.protoPointsPath=protoPointsPath
+        self.regionsPath = regionsPath
+        self.transform = 'Local Affine Transformation'
+        self.newImg = None
+        self.initUI()
+
+    def initUI(self):
+        QToolTip.setFont(QFont('SansSerif', 10))
+        self.setGeometry(300, 200, 810, 430)
+        self.setWindowTitle('Transformation on Human Face')
+
+       
+        #Method choose combobox
+        self.comboAffineLabel = QLabel(self)
+        self.comboAffineLabel.setText('Transformation Method:')
+        self.comboAffineLabel.setGeometry(60,270,230,30)
+
+        self.comboAffine = QComboBox(self)
+        self.comboAffine.addItem("Local Affine Transformation")
+        self.comboAffine.addItem("Moving Least Squares")
+        self.comboAffine.addItem("Morphing")
+        self.comboAffine.setGeometry(22,290,225,30)
+        self.comboAffine.activated[str].connect(self.affineChoiceChange)   
+
+        #The button to choose the original figure
+        self.oriBtn = QPushButton('Choose Original Picture', self)
+        self.oriBtn.setToolTip('Choose Original Picture')
+        self.oriBtn.setGeometry(20,330,230,30)
+        self.oriBtn.clicked.connect(self.showOriDialog)
+
+        #The button to choose the proto figure
+        self.protoBtn = QPushButton('Choose Proto Picture', self)
+        self.protoBtn.setToolTip('Choose Proto Picture')
+        self.protoBtn.setGeometry(20,365,230,30)
+        self.protoBtn.clicked.connect(self.showProtoDialog)
+
+        #The distance function choose combobox
+        self.comboLabel = QLabel(self)
+        self.comboLabel.setText('Distance Fun:')
+        self.comboLabel.setGeometry(310,280,200,30)
+
+        self.comboDis = QComboBox(self)
+        self.comboDis.addItem("L2")
+        self.comboDis.addItem("L1")
+        self.comboDis.setGeometry(410,280,80,30)
+
+        self.comboDis.activated[str].connect(self.distanceChoiceChange)   
+
+        #E choose slider
+        
+        self.eLabel = QLabel(self)
+        self.eLabel.setText('E Value:0.00')
+        self.eLabel.setGeometry(310,320,200,30)
+        self.eSld = QSlider(Qt.Horizontal, self )
+        self.eSld.setRange(0,10**5)
+        self.eSld.setFocusPolicy(Qt.NoFocus)
+        self.eSld.setGeometry(390,320,120,30)
+        self.eSld.valueChanged[int].connect(self.changeEValue)
+
+        #alpha choose slider
+        self.aLabel = QLabel(self)
+        self.aLabel.setText('Alpha Value:0.00')
+        self.aLabel.setGeometry(310,360,200,30)
+        self.aSld = QSlider(Qt.Horizontal, self)
+        self.aSld.setRange(0,10**5)
+        self.aSld.setFocusPolicy(Qt.NoFocus)
+        self.aSld.setGeometry(410,360, 100, 30)
+        self.aSld.valueChanged[int].connect(self.changeAlphaValue)
+        
+        # Picture show 
+        self.oriTextLabel = QLabel(self)
+        self.protoTextLabel = QLabel(self)
+        self.transTextLabel = QLabel(self)
+        self.oriTextLabel.setText('The Orginal Picture')
+        self.protoTextLabel.setText('The Proto Picture')
+        self.transTextLabel.setText('The Picture after Transformation')
+
+        self.oriTextLabel.move(70,5)
+        self.protoTextLabel.move(350,5)
+        self.transTextLabel.move(580,5)
+
+        self.oriLabel = QLabel(self)
+        self.protoLabel = QLabel(self)
+        self.transLabel = QLabel(self)
+
+        pixmap = QPixmap(self.oriPath)
+        pixmap2 = QPixmap(self.protoPath)
+        self.oriLabel.setPixmap(pixmap)
+        self.protoLabel.setPixmap(pixmap2)
+        self.transLabel.setPixmap(pixmap)
+
+        #Position setting
+        self.oriLabel.setGeometry(20,20,230,230)
+        self.protoLabel.setGeometry(290,20,230,230)
+        self.transLabel.setGeometry(560,20,230,230)
+        self.oriLabel.setScaledContents(True)
+        self.protoLabel.setScaledContents(True)
+        self.transLabel.setScaledContents(True)
+        #Load button
+        self.loadOriBtn = QPushButton('Load Ori Points', self)
+        self.loadOriBtn.setToolTip('Load Control Points From Txt File')
+        self.loadOriBtn.setGeometry(550,280,130,30)
+        self.loadOriBtn.clicked.connect(self.showLoadOriDialog)
+
+        self.loadProtoBtn = QPushButton('Load Proto Points', self)
+        self.loadProtoBtn.setToolTip('Load Control Points From Txt File')
+        self.loadProtoBtn.setGeometry(680,280,130,30)
+        self.loadProtoBtn.clicked.connect(self.showLoadProtoDialog)
+        #Face ++ button
+        self.faceBtn = QPushButton('Face++ Keypoint', self)
+        self.faceBtn.setToolTip('Save the Face++ Keypoints')
+        self.faceBtn.setGeometry(550,315,130,30)
+        self.faceBtn.clicked.connect(self.detectKeyPoints)
+        #Load region Button
+        self.loadRegionBtn = QPushButton('Load Regions', self)
+        self.loadRegionBtn.setToolTip('Load Regions From Txt File')
+        self.loadRegionBtn.setGeometry(680,315,130,30)
+        self.loadRegionBtn.clicked.connect(self.showLoadRegionDialog)
+
+
+        #Save Button setting
+        self.saveBtn = QPushButton('Save', self)
+        self.saveBtn.setToolTip('Transform this picture to the shape of Baboon')
+        self.saveBtn.setGeometry(560, 350, 110, 40)
+        self.saveBtn.clicked.connect(self.saveImg)
+
+        #Transform action button
+        self.confirmBtn = QPushButton('Generate', self)
+        self.confirmBtn.setToolTip('Generate')
+        self.confirmBtn.setGeometry(680, 350, 110, 40)
+        self.confirmBtn.clicked.connect(self.transformAction)
+
+
+        self.show()
+
+    #Invoke face++ and save which is connected to the facebtn
+    def detectKeyPoints(self):
+        print(self.oriPath)
+        save_points('face_keypoints_ori.txt', detect((self.oriPath).encode('utf-8')))
+
+    #Save img connected to the save button
+    def saveImg(self):
+        if self.newImg == None:
+            QtGui.QMessageBox.information(self, "Error", "There is not transformed figure")
+        result = Image.fromarray(self.newImg)
+        filenames = self.oriPath.split('/')
+        filenames[len(filenames)-1] = 'trans_'+filenames[len(filenames)-1]
+        newPath = '/'.join(filenames)
+        result.save(newPath)
+
+    #Connected to the transform button did the deformation and show it 
+    def transformAction(self):
+        
+        try:
+            #For different methods have different solution
+            if self.transform == 'Morphing':
+                self.oriImg = np.array(Image.open(self.oriPath))
+                self.protoImg = np.array(Image.open(self.protoPath))
+                if self.oriImg.shape != self.protoImg.shape:
+                    QtGui.QMessageBox.information(self, "Error", "It is image morphing and required the same size of two images,please choose other images")
+                    return
+                newImg = morphingAction((self.oriPath).encode('utf-8'),self.protoPath.encode('utf-8'),self.protoPointsPath.encode('utf-8'),self.alpha)
+            else:
+                localParas,points = preprocess(self.oriPath,self.protoPath,self.oriPointsPath,self.protoPointsPath,self.regionsPath,'L2')
+                if points == None:
+                    QtGui.QMessageBox.information(self, "Error", localParas)
+                    return 
+                self.oriImg,self.protoImg,self.regionsPoints,self.is_in_regions_fun,self.distance_funs,self.affine_funs = localParas
+                self.oriPlotDict,self.protoPlotDict,self.oriPoints ,self.protoPoints = points
+                if self.oriImg.shape[len(self.oriImg.shape)-1] != self.protoImg.shape[len(self.protoImg.shape)-1]:
+                    QtGui.QMessageBox.information(self, "Error", "The type of the figures is not the same, please choose another figure")
+                    return
+                if self.transform == 'Local Affine Transformation':
+                    newImg = local_affine_transformation(self.oriImg,self.protoImg,self.e,self.regionsPoints,self.is_in_regions_fun,self.distance_funs,self.affine_funs)
+                elif self.transform == "Moving Least Squares":
+                    newImg = affine_points_MLS(self.oriImg,self.protoImg,self.oriPoints,self.protoPoints,self.alpha)
+        except BaseException :
+            
+            QtGui.QMessageBox.information(self, "Error", "There are error in the point choice or other things.")
+            newImg = morphingAction((self.oriPath).encode('utf-8'),self.protoPath.encode('utf-8'),self.protoPointsPath.encode('utf-8'),self.alpha)
+
+        
+        self.newImg = np.uint8(newImg)
+        newImg=rgb2bgr(np.uint8(newImg))
+
+        qimage = QImage(newImg,newImg.shape[1],newImg.shape[0],QImage.Format_ARGB32)
+        pixmap_array = QPixmap.fromImage(qimage)
+        self.transLabel.setPixmap(pixmap_array)
+################################################################################################
+################################################################################################
+################################################################################################
+################################################################################################
+################################################################################################
+################################################################################################
+################################################################################################
+################################################################################################
+
+    #The file chooser , all of the function begin with show is the same but for different parameter.
+    def showProtoDialog(self):
+
+        fname, _ = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
+                    '/home',"Image Files (*.png *.jpg *.bmp)")
+        if  fname != None and fname != '':
+            self.protoPath = fname
+            self.protoLabel.setPixmap(QPixmap(self.protoPath))
+    def showLoadOriDialog(self):
+
+        fname, _ = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
+                    '/home',"Text files (*.txt)")
+        if  fname != None and fname != '':
+            self.oriPointsPath = fname
+
+    def showLoadRegionDialog(self):
+
+        fname, _ = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
+                    '/home',"Text files (*.txt)")
+        if  fname != None and fname != '':
+            self.regionsPath = fname
+    
+    def showLoadProtoDialog(self):
+
+        fname, _ = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
+                    '/home',"Text files (*.txt)")
+        if  fname != None and fname != '':
+            self.protoPointsPath = fname
+        
+    
+    def showOriDialog(self):
+
+        fname, _ = QtGui.QFileDialog.getOpenFileName(self, 'Open file',
+                    '/home',"Image Files (*.png *.jpg *.bmp)")
+        if  fname != None and fname != '':
+            self.oriPath = fname
+            print(self.oriPath)
+            self.oriLabel.setPixmap(QPixmap(self.oriPath))
+
+        
+    #Connected with eSld change the e value in LAT method    
+    def changeEValue(self,x):
+        self.e = 4.0*x/10**5
+        self.eLabel.setText('E Value:'+str( '%.2f' % self.e))
+
+    #Connected with aSld change the alpha value in MLS and Morphing method(but the alpha range is not the same)   
+    def changeAlphaValue(self,x):
+        if self.transform == 'Moving Least Squares':
+            self.alpha = 2.0*x/10**5
+        elif self.transform == 'Morphing':
+            self.alpha = 1.0*x/10**5
+        self.aLabel.setText('Alpha Value:'+str('%.2f' % self.alpha))
+    #Connected to the method combobox
+    def affineChoiceChange(self,item):
+        
+        if self.transform in ['Moving Least Squares','Morphing'] and item in ['Moving Least Squares','Morphing'] and item != self.transform:
+            self.alpha = 0.0
+            self.aSld.setValue(self.alpha)
+        self.transform = item
+     #Connected to the distance combobox    
+    def distanceChoiceChange(self,item):
+        self.oriImg,self.protoImg,self.protoPoints,self.affine_funs = preprocess(oriPath,protoPath,oriPointsPath,protoPointsPath,item)
+
+
+
+#run 
+if __name__ == '__main__':
+    #app = QApplication(sys.argv)
+    oriPath = 'data/zxh151.png'
+    protoPath = 'data/ape.png'
+    ex = TransformationFaceUI(oriPath,protoPath,'data/zxh.txt','data/ape.txt','data/regions.txt')
+    
+    sys.exit(app.exec_())
+    
