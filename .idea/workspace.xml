@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92118cfe-6fda-4165-b540-5a7fb5438373" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/HW/HW4/Q4.py" afterPath="$PROJECT_DIR$/HW/HW4/Q4.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,7 +28,7 @@
       <file leaf-file-name="1imageio.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Labs/3 imagebasic_for_stu/1imageio.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="437">
               <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
               <folding />
             </state>
@@ -82,7 +82,7 @@
       <file leaf-file-name="Q1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HW/HW4/Q1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="567">
+            <state relative-caret-position="1026">
               <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="21" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -106,8 +106,8 @@
       <file leaf-file-name="Q4.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HW/HW4/Q4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="33" column="18" lean-forward="false" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+            <state relative-caret-position="283">
+              <caret line="24" column="34" lean-forward="true" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -195,25 +195,6 @@
               <item name="FDU-Data-Visualization" type="b2602c69:ProjectViewProjectNode" />
               <item name="FDU-Data-Visualization" type="462c0819:PsiDirectoryNode" />
               <item name="HW" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FDU-Data-Visualization" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FDU-Data-Visualization" type="462c0819:PsiDirectoryNode" />
-              <item name="HW" type="462c0819:PsiDirectoryNode" />
-              <item name="HW3" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FDU-Data-Visualization" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FDU-Data-Visualization" type="462c0819:PsiDirectoryNode" />
-              <item name="HW" type="462c0819:PsiDirectoryNode" />
-              <item name="HW4" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FDU-Data-Visualization" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FDU-Data-Visualization" type="462c0819:PsiDirectoryNode" />
-              <item name="HW" type="462c0819:PsiDirectoryNode" />
-              <item name="HW4" type="462c0819:PsiDirectoryNode" />
-              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FDU-Data-Visualization" type="b2602c69:ProjectViewProjectNode" />
@@ -405,8 +386,8 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26964933" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15879828" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16094421" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.316839" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="121" y="22" width="1319" height="878" />
@@ -447,9 +428,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1121">
           <caret line="61" column="30" lean-forward="true" selection-start-line="61" selection-start-column="30" selection-end-line="61" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#31#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -703,7 +681,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Labs/3 imagebasic_for_stu/1imageio.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="437">
           <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
           <folding />
         </state>
@@ -738,7 +716,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="1937" column="47" lean-forward="false" selection-start-line="1937" selection-start-column="47" selection-end-line="1937" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -789,15 +766,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="444">
           <caret line="61" column="30" lean-forward="true" selection-start-line="61" selection-start-column="4" selection-end-line="61" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#31#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HW/HW4/Q1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="567">
+        <state relative-caret-position="1026">
           <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="21" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
@@ -817,8 +791,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HW/HW4/Q4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="33" column="18" lean-forward="false" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+        <state relative-caret-position="283">
+          <caret line="24" column="34" lean-forward="true" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="34" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
