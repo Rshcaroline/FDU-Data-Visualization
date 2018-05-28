@@ -3,6 +3,8 @@ import cv2
 from PIL import Image
 import sys
 import matplotlib.pyplot as plt
+
+
 def readPoints(path) :
     # Create an array of points.
     points = [];
@@ -11,18 +13,18 @@ def readPoints(path) :
         for line in file :
             x, y = line.split()
             points.append((int(x), int(y)))
-
     return points
+
 #load the points  from the format we define in readme
 def load_data(path):
-	points = {}
-	with open(path,'r') as reader:
-		for line in reader:
-			key,value = line.strip().split('=')
-			x,y = value.split(',')
-			x,y = int(x),int(y)
-			points[key] = np.array([x,y])
-	return points
+    points = {}
+    with open(path,'r') as reader:
+        for line in reader:
+            key,value = line.strip().split('=')
+            x,y = value.split(',')
+            x,y = int(x),int(y)
+            points[key] = np.array([x,y])
+    return points
 
 #This python file is for morphing 
 def affineTransform(src, srcTri, dstTri, size) :
@@ -34,6 +36,8 @@ def affineTransform(src, srcTri, dstTri, size) :
     dst = cv2.warpAffine( src, warpMat, (size[0], size[1]), None, flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT_101 )
 
     return dst
+
+
 # Generate the triangles by using the opencv subdiv from the control points
 def delaunaryTriangles(rect,points):
     #print(points,rect)
@@ -41,7 +45,7 @@ def delaunaryTriangles(rect,points):
     pointsDict = {}
     #Get the triangle list 
     for i,p in enumerate(points) :
-    	
+
         subdiv.insert((int(p[0]),int(p[1])))
         pointsDict[(int(p[0]),int(p[1]))] = i 
     triangleList = subdiv.getTriangleList();
@@ -55,9 +59,11 @@ def delaunaryTriangles(rect,points):
         pt3 = (int(t[4]), int(t[5]))
         
         if pt1 in pointsDict and pt2 in pointsDict and pt3 in pointsDict:
-        	triangleIndList.append([pointsDict[pt1],pointsDict[pt2],pointsDict[pt3]])
+            triangleIndList.append([pointsDict[pt1],pointsDict[pt2],pointsDict[pt3]])
     
     return triangleIndList
+
+
 #Do deformation on oriImg
 def morphing(oriImg,protoImg,oriPoints,protoPoints,alpha):
     oriPoints = addPoints(oriPoints,oriImg)
@@ -75,13 +81,14 @@ def morphing(oriImg,protoImg,oriPoints,protoPoints,alpha):
     imgs = [oriImg,protoImg,newImg]
     #For each triangles do the affine transformation
     for tInd in triangleIndList:
-    	ts = [[],[],[]]
-    	for i in range(3):
-        	ts[0].append(np.array(oriPoints[tInd[i]]))
-        	ts[1].append(np.array(protoPoints[tInd[i]]))
-        	ts[2].append(np.array(morphPoints[tInd[i]]))
+        ts = [[],[],[]]
+        for i in range(3):
+            ts[0].append(np.array(oriPoints[tInd[i]]))
+            ts[1].append(np.array(protoPoints[tInd[i]]))
+            ts[2].append(np.array(morphPoints[tInd[i]]))
         morphingTriangle(imgs,ts,alpha)
     return imgs[2]
+
 
 #Add points on the borders
 def addPoints(points,img):
@@ -98,6 +105,8 @@ def addPoints(points,img):
     points_.append((int(x_size/2),int(y_size)))
     points_.append((int(x_size),int(y_size/2)))
     return np.array(points_)
+
+
 #Morphing on the triangles 
 def morphingTriangle(imgs, ts, alpha):
 
@@ -129,6 +138,7 @@ def morphingTriangle(imgs, ts, alpha):
 
     imgs[2][recs[2][1]:recs[2][1]+recs[2][3],recs[2][0]:recs[2][0]+recs[2][2]] = recImgs[2]*(1-mask)+mask*morphRec
 
+
 #Invoke face++ api to detect the facial keypoints
 def detect(path):
     API_KEY = "3o6_lMDRxcpYalXhuXq9cymJeeN7cHCS"
@@ -146,6 +156,7 @@ def detect(path):
         new_dict[k] = np.array([v['x'],v['y']])
 
     return new_dict
+
 
 #The function invoked by the GUI
 def morphingAction(ori_path,proto_path,proto_point_path,alpha):
@@ -202,7 +213,7 @@ if __name__ == '__main__':
         oriPoints.append(oriDict[key])
     protoPoints = np.array(protoPoints)
     oriPoints = np.array(oriPoints)
-	
+
     
     alphas = [0.5,0.6,0.7,0.8,0.9,1]
     #alphas = [0,0.1,0.2,0.3,0.4]

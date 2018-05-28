@@ -68,7 +68,14 @@ Python编程实现在二维图片上画出等值线/等高线（不能调用某�
 
 ## 解答
 
+### 具体步骤
 
+- 遍历读入的Image矩阵，找到值为指定数值的地方，将其赋值为0。
+- 最终将会显示为黑色的一条等值线。
+
+### 结果图
+
+![Q3](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW4/Q3.png)
 
 # 题目四：强化边界滤波算法
 
@@ -90,7 +97,9 @@ Python编程实现强化边界滤波算法代码（不能调用某个算法库�
 
 ### 结果图
 
-### Reference
+![Q4](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW4/Q4.png)
+
+Reference
 
 - [图像卷积与滤波的一些知识点](https://blog.csdn.net/zouxy09/article/details/49080029)
 - [opencv笔记4：模板运算和常见滤波操作](http://www.cnblogs.com/zjutzz/p/4854839.html)
