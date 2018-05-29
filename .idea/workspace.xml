@@ -2,18 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92118cfe-6fda-4165-b540-5a7fb5438373" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/HW/HW5/mario.jpg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/HW/HW5/zxh-face.jpg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/HW/HW5/hw2.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/HW/HW4/HW4.md" afterPath="$PROJECT_DIR$/HW/HW4/HW4.md" />
-      <change beforePath="$PROJECT_DIR$/HW/HW4/Q3.py" afterPath="$PROJECT_DIR$/HW/HW4/Q3.py" />
-      <change beforePath="$PROJECT_DIR$/HW/HW4/Q4.png" afterPath="$PROJECT_DIR$/HW/HW4/Q4.png" />
-      <change beforePath="$PROJECT_DIR$/HW/HW4/Q4.py" afterPath="$PROJECT_DIR$/HW/HW4/Q4.py" />
-      <change beforePath="$PROJECT_DIR$/HW/HW4/data/moon.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/HW/HW4/data/sharp.jpg" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code/morphing.py" afterPath="$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code/morphing.py" />
-      <change beforePath="$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/report.pdf" afterPath="$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/report.pdf" />
-      <change beforePath="$PROJECT_DIR$/HW/HW5/Reference/10.1006@cviu.1997.0608.pdf" afterPath="$PROJECT_DIR$/HW/HW5/Reference/10.1006@cviu.1997.0608.pdf" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -40,13 +30,25 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="local_affine_modified.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="local_affine_modified.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HW/HW5/local_affine_modified.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="128" column="15" lean-forward="false" selection-start-line="128" selection-start-column="15" selection-end-line="128" selection-end-column="15" />
+            <state relative-caret-position="2926">
+              <caret line="154" column="37" lean-forward="false" selection-start-line="154" selection-start-column="37" selection-end-line="154" selection-end-column="37" />
               <folding>
                 <element signature="e#25#46#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hw2.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HW/HW5/hw2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="418">
+              <caret line="22" column="57" lean-forward="true" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
+              <folding>
+                <element signature="e#233#254#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -93,6 +95,7 @@
         <option value="$PROJECT_DIR$/HW/HW4/Q3.py" />
         <option value="$PROJECT_DIR$/HW/HW4/Q4.py" />
         <option value="$PROJECT_DIR$/HW/HW5/local_affine_modified.py" />
+        <option value="$PROJECT_DIR$/HW/HW5/hw2.py" />
       </list>
     </option>
   </component>
@@ -322,10 +325,10 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.286578" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.286578" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16309012" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -379,16 +382,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/HW/HW4/Q4.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="31" column="15" lean-forward="true" selection-start-line="31" selection-start-column="15" selection-end-line="31" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Labs/3 imagebasic_for_stu/1imageio.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -708,10 +701,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HW/HW5/local_affine_modified.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="128" column="15" lean-forward="false" selection-start-line="128" selection-start-column="15" selection-end-line="128" selection-end-column="15" />
+        <state relative-caret-position="2926">
+          <caret line="154" column="37" lean-forward="false" selection-start-line="154" selection-start-column="37" selection-end-line="154" selection-end-column="37" />
           <folding>
             <element signature="e#25#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HW/HW5/hw2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="22" column="57" lean-forward="true" selection-start-line="22" selection-start-column="57" selection-end-line="22" selection-end-column="57" />
+          <folding>
+            <element signature="e#233#254#0" expanded="true" />
           </folding>
         </state>
       </provider>
