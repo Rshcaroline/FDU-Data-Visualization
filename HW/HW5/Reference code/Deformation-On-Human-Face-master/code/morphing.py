@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 
 def readPoints(path) :
     # Create an array of points.
-    points = [];
+    points = []
     # Read points
     with open(path) as file :
         for line in file :
@@ -143,17 +143,60 @@ def morphingTriangle(imgs, ts, alpha):
 def detect(path):
     API_KEY = "3o6_lMDRxcpYalXhuXq9cymJeeN7cHCS"
     API_SECRET = "6776wZFWYVfYjwDgS8G_0rmWhtXVyUcW"
-    from facepp import API, File
-    api = API(API_KEY, API_SECRET)
-    result = api.detect(image_file=File(path),return_landmark=1)
-    landmarks = result['faces'][0]['landmark']
-    #print(landmarks)
+
+    # from facepp import API, File
+    # api = API(API_KEY, API_SECRET)
+    # result = api.detect(image_file=File(path),return_landmark=1)
+    # landmarks = result['faces'][0]['landmark']
+
+    import urllib
+    import base64
+    import json
+
+    url = 'https://api-cn.faceplusplus.com/facepp/v3/detect'
+    # API_KEY = 'znU49IIfP_C3jVSuTpHsbkCaE4yIzpLt'
+    # API_SECRET = 'E3j5lCz-XZRi6lJPvaiPfIHnuEygxRSA'
+
+    # read image
+    open_icon = open(path, "rb")
+    b64str = base64.b64encode(open_icon.read())
+    open_icon.close()
+
+    # use api to detect face message
+    para = {'api_key': API_KEY, 'api_secret': API_SECRET, 'image_base64': b64str, 'return_landmark': 1}
+    DATA = urllib.parse.urlencode(para).encode("utf-8")
+    req = urllib.request.urlopen(url, DATA)
+    faceData = json.loads(req.read())
+
+    # 16 key points totally
+    # points = {}
+    # points['left_eye_left_corner'] = faceData['faces'][0]['landmark']['left_eye_left_corner']
+    # points['left_eye_center'] = faceData['faces'][0]['landmark']['left_eye_center']
+    # points['left_eye_right_corner'] = faceData['faces'][0]['landmark']['left_eye_right_corner']
+    # points['right_eye_left_corner'] = faceData['faces'][0]['landmark']['right_eye_left_corner']
+    # points['right_eye_center'] = faceData['faces'][0]['landmark']['right_eye_center']
+    # points['right_eye_right_corner'] = faceData['faces'][0]['landmark']['right_eye_right_corner']
+    # points['nose_left'] = faceData['faces'][0]['landmark']['nose_left']
+    # points['nose_right'] = faceData['faces'][0]['landmark']['nose_right']
+    # points['nose_tip'] = faceData['faces'][0]['landmark']['nose_tip']
+    # points['mouth_left_corner'] = faceData['faces'][0]['landmark']['mouth_left_corner']
+    # points['mouth_lower_lip_left_contour2'] = faceData['faces'][0]['landmark']['mouth_lower_lip_left_contour2']
+    # points['mouth_lower_lip_left_contour3'] = faceData['faces'][0]['landmark']['mouth_lower_lip_left_contour3']
+    # points['mouth_lower_lip_bottom'] = faceData['faces'][0]['landmark']['mouth_lower_lip_bottom']
+    # points['mouth_lower_lip_right_contour3'] = faceData['faces'][0]['landmark']['mouth_lower_lip_right_contour3']
+    # points['mouth_lower_lip_right_contour2'] = faceData['faces'][0]['landmark']['mouth_lower_lip_right_contour2']
+    # points['mouth_right_corner'] = faceData['faces'][0]['landmark']['mouth_right_corner']
+    #
+    # return (points)
+
+    landmarks = faceData['faces'][0]['landmark']
+    print(landmarks)
     keys = [ 'left_eye_right_corner','left_eye_left_corner','right_eye_right_corner','right_eye_left_corner','left_eyebrow_right_corner','right_eyebrow_left_corner',
               'mouth_right_corner','mouth_left_corner','mouth_lower_lip_left_contour2','mouth_lower_lip_left_contour3','mouth_lower_lip_bottom','mouth_lower_lip_right_contour2','mouth_lower_lip_right_contour3','nose_left','nose_right']
     new_dict = {}
-    for k,v in landmarks.iteritems():
-        
-        new_dict[k] = np.array([v['x'],v['y']])
+    for key in keys:
+        v = landmarks[key]
+        new_dict[key] = np.array([v['x'],v['y']])
 
     return new_dict
 
@@ -194,8 +237,7 @@ if __name__ == '__main__':
     oriImg = np.array(Image.open(ori_path))
     protoImg = np.array(Image.open(proto_path))
     
-    
-    protoDict = load_data('data/biaodian.txt')
+    protoDict = load_data('data/ape.txt')
    
     oriDict = detect(ori_path)
     delList = []
@@ -208,7 +250,7 @@ if __name__ == '__main__':
     oriPoints = []
     protoPoints = []
     
-    for key in protoDict:
+    for key in oriDict:   # for key in protoDict:
         protoPoints.append(protoDict[key])
         oriPoints.append(oriDict[key])
     protoPoints = np.array(protoPoints)

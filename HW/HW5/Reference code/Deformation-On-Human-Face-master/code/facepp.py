@@ -12,7 +12,7 @@ DEBUG_LEVEL = 1
 
 import sys
 import socket
-import urllib2
+import urllib
 import json
 import os.path
 import itertools
@@ -142,7 +142,7 @@ class _APIProxy(object):
         for k, v in self._mkarg(kargs).iteritems():
             form.add_field(k, v)
 
-        request = urllib2.Request(url)
+        request = urllib.request.urlopen(url)
         body = str(form)
         request.add_header('Content-type', form.get_content_type())
         request.add_header('Content-length', str(len(body)))
@@ -154,11 +154,11 @@ class _APIProxy(object):
         while True:
             retry -= 1
             try:
-                ret = urllib2.urlopen(request, timeout=self._api.timeout).read()
+                ret = urllib.request.urlopen(request, timeout=self._api.timeout).read()
                 break
-            except urllib2.HTTPError as e:
+            except urllib.HTTPError as e:
                 raise APIError(e.code, url, e.read())
-            except (socket.error, urllib2.URLError) as e:
+            except (socket.error, urllib.URLError) as e:
                 if retry < 0:
                     raise e
                 _print_debug('caught error: {}; retrying'.format(e))
