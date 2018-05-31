@@ -21,7 +21,7 @@ else:
     image.AllocateScalars(vtk.VTK_UNSIGNED_SHORT , 1)
 
 # Fill every entry of the image data. 
-intRange = (-100,900) 
+intRange = (-100,900)
 max_u_short = 1000  # 0-100 lung，200-400 enhanced blood, 400-1000 bone
 for z in range(dims[2]):
     for y in range(dims[1]):
@@ -37,26 +37,30 @@ for z in range(dims[2]):
 # Create transfer mapping scalar value to opacity
 opacityTransferFunction=vtk.vtkPiecewiseFunction()
 #blank     opacityTransferFunction.AddSegment    # 显示肺部
-#blank     opacityTransferFunction.AddSegment    # 显示增强 
+opacityTransferFunction.AddPoint(0,0.0)
+#blank     opacityTransferFunction.AddSegment    # 显示增强
+opacityTransferFunction.AddSegment(23,0.3,128,0.5)
 #blank     opacityTransferFunction.AddSegment    # 骨骼
-opacityTransferFunction.ClampingOff()  # 
+opacityTransferFunction.ClampingOff()  #
  
 # Create transfer mapping scalar value to color
 colorTransferFunction=vtk.vtkColorTransferFunction() 
-#blank     colorTransferFunction.AddRGBSegment 
+#blank     colorTransferFunction.AddRGBSegment
+colorTransferFunction.AddRGBSegment(0,0.0,0.0,0.0,20,0.2,0.2,0.2)
+colorTransferFunction.AddRGBSegment(20,0.1,0.1,0,128,1,1,0)
 #blank     colorTransferFunction.AddRGBSegment  # intensity between 
 #blank     colorTransferFunction.AddRGBSegment  # intensity between  
 
 # grad to opacity transfer
-#gradientTransferFunction=vtk.vtkPiecewiseFunction()
-#gradientTransferFunction.AddPoint(0,0.0);
-#gradientTransferFunction.AddSegment(22, 0.1, 128, 0.3 );
+gradientTransferFunction=vtk.vtkPiecewiseFunction()
+gradientTransferFunction.AddPoint(0,0.0)
+gradientTransferFunction.AddSegment(22, 0.1, 128, 0.3)
 
 # The property describes how the data will look -- from zxhproj::CardCoronaryRender.cpp
 volumeProperty=vtk.vtkVolumeProperty() 
 volumeProperty.SetScalarOpacity(opacityTransferFunction)
 volumeProperty.SetColor(colorTransferFunction)
-#volumeProperty.SetGradientOpacity(gradientTransferFunction)
+volumeProperty.SetGradientOpacity(gradientTransferFunction)
 volumeProperty.ShadeOn()
 volumeProperty.SetInterpolationTypeToLinear()
 volumeProperty.SetAmbient(1)

@@ -10,7 +10,9 @@ spacing=(img1.header['pixdim'][1], img1.header['pixdim'][2], img1.header['pixdim
 image=vtk.vtkImageData()              #生成vtkImageData对象
 image.SetDimensions( dims[0],dims[1],dims[2] )      #设置vtkImageData对象的维度
 #blank  设置间隔
-#blank  设置Origin 
+image.SetSpacing(spacing[0], spacing[1], spacing[2])
+#blank  设置Origin
+image.SetOrigin(0,0,0)
 
 if vtk.VTK_MAJOR_VERSION <= 5:
     image.SetNumberOfScalarComponents(1)      #vtkImageData sclalarArray tuple'size
@@ -23,12 +25,15 @@ for z in range(dims[2]):
     for y in range(dims[1]):
         for x in range(dims[0]):
             # blank  将图像标量场数据填入vtkImageData对象的scalar属性中
+            scalardata = img1_data[x][y][z]
+            image.SetScalarComponentFromDouble(x, y, z, 0, scalardata)
 
  
 Extractor=vtk.vtkMarchingCubes()         #移动立方体算法对象，得到等值面
 #blank  输入数据
+Extractor.SetInputData(image)
 #blank  设置value，求value=200的等值面
-
+Extractor.SetValue(0, 150)
 stripper=vtk.vtkStripper()             #建立三角带对象
 stripper.SetInputConnection(Extractor.GetOutputPort())     #输入数据，将生成的三角片连接成三角带
 mapper=vtk.vtkPolyDataMapper()                           #下面设置,mapper,actor,renderer等
@@ -37,14 +42,16 @@ actor=vtk.vtkActor()
 actor.SetMapper(mapper)  
 
 #blank  设置颜色
+actor.GetProperty().SetColor(1,1,0)
 actor.GetProperty().SetOpacity(0.9)
 actor.GetProperty().SetAmbient(0.25)
 actor.GetProperty().SetDiffuse(0.6)
-actor.GetProperty().SetSpecular(1.0) 
+actor.GetProperty().SetSpecular(1.0)
 
-ren = vtk.vtkRenderer() 
+ren = vtk.vtkRenderer()
 #blank  设置背景颜色
-ren.AddActor(actor) 
+# ren.SetBackground(1,1,1)
+ren.AddActor(actor)
 renWin = vtk.vtkRenderWindow()
 
 renWin.AddRenderer(ren)
