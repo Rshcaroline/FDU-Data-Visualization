@@ -31,6 +31,7 @@ def get_orangutan_message(rows,cols):
     points['mouth_lower_lip_right_contour3']={'y':int(0.877*rows),'x':int(0.617*cols)}
     points['mouth_lower_lip_right_contour2']={'y':int(0.832*rows),'x':int(0.702*cols)}
     points['mouth_right_corner']={'y':int(0.769*rows),'x':int(0.768*cols)}
+
     return points
 
 def get_face_message(image_path):
@@ -88,21 +89,28 @@ def locally_affine(X,U,V):
     # 算法：老师提供的局部仿射空间变换公式，这里的仿射区域均为单点
     # input: 原图上的点X,包含所有进行仿射的区域(点)的字典U,它们的对应点的字典V。
     # output: T(X)的坐标[y,x]
-    
+
     for point in U:  # 判断点X是否属于仿射区域(点)，若是，返回G(X)
         if (X[0] == U[point]['y'])&(X[1] == U[point]['x']):
             b = affine_vector((U[point]['y'],U[point]['x']), (V[point]['y'],V[point]['x']))
             G_X = list(map(lambda x: x[0]+x[1], zip(X, b)))
             return G_X
+
     T_X = [0,0]
     D2_I_sum = sum([1.0/((U[p]['y']-X[0])**2+(U[p]['x']-X[1])**2) for p in U])
+    # srcAnchors = []
+    # tarAnchors = []
     for point in U:
+        # srcAnchors.append((V[point]['y'], V[point]['x']))
+        # tarAnchors.append((U[point]['y'], U[point]['x']))
         b = affine_vector((U[point]['y'],U[point]['x']), (V[point]['y'],V[point]['x']))
         G_X = list(map(lambda x: x[0]+x[1], zip(X, b)))
         d = ((U[point]['y']-X[0])**2+(U[point]['x']-X[1])**2)**0.5
         w = (1.0/d**2) / D2_I_sum
         wG = list(map(lambda x: w*x, G_X))
         T_X = list(map(lambda x: x[0]+x[1], zip(T_X, wG)))
+    # print(srcAnchors)
+    # print(tarAnchors)
     return T_X
 
 def interpolation(X,img):
@@ -135,7 +143,7 @@ face = np.array(face.convert('RGB'))
 # 读入狒狒脸数据
 orangutan = Image.open(ape)
 orangutan = np.array(orangutan.convert('RGB'))
-rows,cols,channels = orangutan.shape
+rows, cols, channels = orangutan.shape
 
 # 新建狒狒脸的图像，该图像用于重新设置像素点的颜色
 orangutan_face = cv2.imread(ape, 1)
@@ -148,7 +156,7 @@ V = get_face_message(pic)
 # 对于狒狒图像的每一个像素点
 for y in range(rows):
     for x in range(cols):
-        T_X = locally_affine((y,x),U,V) #计算该像素点对应到人脸的坐标
+        T_X = locally_affine((y,x), U, V) #计算该像素点对应到人脸的坐标
         color = interpolation(T_X,face) #双线性插值得出该人脸坐标的RGB值
         orangutan_face[y,x] = color #将狒狒图像像素点的RGB值进行替换
 
