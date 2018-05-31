@@ -260,7 +260,7 @@ if __name__ == '__main__':
     alphas = [0.5,0.6,0.7,0.8,0.9,1]
     #alphas = [0,0.1,0.2,0.3,0.4]
     for i,alpha in enumerate(alphas):    
-        newImg = morphing(oriImg,protoImg,oriPoints,protoPoints,alpha)
+        newImg = morphing(protoImg,oriImg,protoPoints,oriPoints,alpha)
         
         plt.subplot(1,len(alphas),i+1)
         plt.imshow(np.uint8(newImg),interpolation=None)

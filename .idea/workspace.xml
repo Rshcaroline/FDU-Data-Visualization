@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92118cfe-6fda-4165-b540-5a7fb5438373" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/HW/HW5/ape.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/HW/HW5/morphing.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code/facepp.py" afterPath="$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code/facepp.py" />
       <change beforePath="$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code/morphing.py" afterPath="$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code/morphing.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,11 +22,11 @@
     <SUITE FILE_PATH="coverage/FDU_Data_Visualization$4smooth.coverage" NAME="4smooth Coverage Results" MODIFIED="1526725207497" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Labs/3 imagebasic_for_stu" />
     <SUITE FILE_PATH="coverage/FDU_Data_Visualization$Q4.coverage" NAME="Q4 Coverage Results" MODIFIED="1527001579898" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW/HW4" />
     <SUITE FILE_PATH="coverage/FDU_Data_Visualization$Q1.coverage" NAME="Q1 Coverage Results" MODIFIED="1526628396001" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW/HW4" />
-    <SUITE FILE_PATH="coverage/FDU_Data_Visualization$morphing.coverage" NAME="morphing Coverage Results" MODIFIED="1527579954344" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code" />
+    <SUITE FILE_PATH="coverage/FDU_Data_Visualization$morphing.coverage" NAME="morphing Coverage Results" MODIFIED="1527580989485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code" />
     <SUITE FILE_PATH="coverage/FDU_Data_Visualization$1imageio.coverage" NAME="1imageio Coverage Results" MODIFIED="1526529752233" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Labs/3 imagebasic_for_stu" />
     <SUITE FILE_PATH="coverage/FDU_Data_Visualization$3threshold.coverage" NAME="3threshold Coverage Results" MODIFIED="1526529842989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Labs/3 imagebasic_for_stu" />
     <SUITE FILE_PATH="coverage/FDU_Data_Visualization$5grad.coverage" NAME="5grad Coverage Results" MODIFIED="1526531395009" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Labs/3 imagebasic_for_stu" />
-    <SUITE FILE_PATH="coverage/FDU_Data_Visualization$local_affine_modified.coverage" NAME="local_affine_modified Coverage Results" MODIFIED="1527579967534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW/HW5" />
+    <SUITE FILE_PATH="coverage/FDU_Data_Visualization$local_affine_modified.coverage" NAME="local_affine_modified Coverage Results" MODIFIED="1527580983996" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW/HW5" />
     <SUITE FILE_PATH="coverage/FDU_Data_Visualization$Q2.coverage" NAME="Q2 Coverage Results" MODIFIED="1526713589994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/HW/HW4" />
   </component>
   <component name="FileEditorManager">
@@ -37,8 +34,8 @@
       <file leaf-file-name="local_affine_modified.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HW/HW5/local_affine_modified.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-185">
-              <caret line="41" column="4" lean-forward="true" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+            <state relative-caret-position="665">
+              <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
               <folding>
                 <element signature="e#25#46#0" expanded="true" />
               </folding>
@@ -49,8 +46,8 @@
       <file leaf-file-name="morphing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code/morphing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="252" column="17" lean-forward="true" selection-start-line="252" selection-start-column="17" selection-end-line="252" selection-end-column="17" />
+            <state relative-caret-position="19">
+              <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -58,11 +55,47 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="morphing.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/HW/HW5/morphing.py">
+      <file leaf-file-name="forstu_render_surface_niiimage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/forstu_render_surface_niiimage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="193" column="39" lean-forward="false" selection-start-line="193" selection-start-column="39" selection-end-line="193" selection-end-column="39" />
+            <state relative-caret-position="418">
+              <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forstu_render_volume.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/forstu_render_volume.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-850">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forstu_render_volume_imagegrad.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/forstu_render_volume_imagegrad.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="38">
+              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding>
+                <element signature="e#32#53#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="niftyio.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/niftyio.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="19">
+              <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -116,8 +149,10 @@
         <option value="$PROJECT_DIR$/HW/HW5/hw2.py" />
         <option value="$PROJECT_DIR$/HW/HW5/local_affine_modified.py" />
         <option value="$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code/facepp.py" />
-        <option value="$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code/morphing.py" />
         <option value="$PROJECT_DIR$/HW/HW5/morphing.py" />
+        <option value="$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code/morphing.py" />
+        <option value="$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/forstu_render_surface_niiimage.py" />
+        <option value="$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/niftyio.py" />
       </list>
     </option>
   </component>
@@ -146,6 +181,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -156,44 +193,18 @@
             <path>
               <item name="FDU-Data-Visualization" type="b2602c69:ProjectViewProjectNode" />
               <item name="FDU-Data-Visualization" type="462c0819:PsiDirectoryNode" />
-              <item name="HW" type="462c0819:PsiDirectoryNode" />
+              <item name="Labs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="FDU-Data-Visualization" type="b2602c69:ProjectViewProjectNode" />
               <item name="FDU-Data-Visualization" type="462c0819:PsiDirectoryNode" />
-              <item name="HW" type="462c0819:PsiDirectoryNode" />
-              <item name="HW5" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FDU-Data-Visualization" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FDU-Data-Visualization" type="462c0819:PsiDirectoryNode" />
-              <item name="HW" type="462c0819:PsiDirectoryNode" />
-              <item name="HW5" type="462c0819:PsiDirectoryNode" />
-              <item name="Reference code" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FDU-Data-Visualization" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FDU-Data-Visualization" type="462c0819:PsiDirectoryNode" />
-              <item name="HW" type="462c0819:PsiDirectoryNode" />
-              <item name="HW5" type="462c0819:PsiDirectoryNode" />
-              <item name="Reference code" type="462c0819:PsiDirectoryNode" />
-              <item name="Deformation-On-Human-Face-master" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="FDU-Data-Visualization" type="b2602c69:ProjectViewProjectNode" />
-              <item name="FDU-Data-Visualization" type="462c0819:PsiDirectoryNode" />
-              <item name="HW" type="462c0819:PsiDirectoryNode" />
-              <item name="HW5" type="462c0819:PsiDirectoryNode" />
-              <item name="Reference code" type="462c0819:PsiDirectoryNode" />
-              <item name="Deformation-On-Human-Face-master" type="462c0819:PsiDirectoryNode" />
-              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="Labs" type="462c0819:PsiDirectoryNode" />
+              <item name="6 for_stu_surface_volume_render" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -218,7 +229,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.local_affine_modified">
+  <component name="RunManager" selected="Python.morphing">
     <configuration name="4smooth" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -341,8 +352,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.local_affine_modified" />
-        <item index="1" class="java.lang.String" itemvalue="Python.morphing" />
+        <item index="0" class="java.lang.String" itemvalue="Python.morphing" />
+        <item index="1" class="java.lang.String" itemvalue="Python.local_affine_modified" />
         <item index="2" class="java.lang.String" itemvalue="Python.morphing (1)" />
         <item index="3" class="java.lang.String" itemvalue="Python.Q4" />
         <item index="4" class="java.lang.String" itemvalue="Python.4smooth" />
@@ -367,17 +378,18 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38331318" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38331318" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16523606" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22031474" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="SciView" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.68526465" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="121" y="22" width="1319" height="878" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7546495" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="121" y="22" width="1319" height="878" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -427,28 +439,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Labs/3 imagebasic_for_stu/5grad.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="32" column="18" lean-forward="false" selection-start-line="32" selection-start-column="18" selection-end-line="32" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/HW/HW4/HW4.ipynb" />
-    <entry file="file://$PROJECT_DIR$/Labs/3 imagebasic_for_stu/1imageio.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="24" column="17" lean-forward="false" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Labs/3 imagebasic_for_stu/3threshold.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="14" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Labs/3 imagebasic_for_stu/2pixeledit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -670,7 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="15" column="24" lean-forward="false" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -678,7 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
           <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -693,42 +681,65 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="7" column="10" lean-forward="false" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HW/HW5/ape.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/HW/HW5/ape.txt" />
     <entry file="file://$PROJECT_DIR$/HW/HW5/local_affine_modified.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-185">
-          <caret line="41" column="4" lean-forward="true" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+        <state relative-caret-position="665">
+          <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
           <folding>
             <element signature="e#25#46#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/HW/HW5/morphing.py" />
     <entry file="file://$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code/morphing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="252" column="17" lean-forward="true" selection-start-line="252" selection-start-column="17" selection-end-line="252" selection-end-column="17" />
+        <state relative-caret-position="19">
+          <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HW/HW5/morphing.py">
+    <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/forstu_render_surface_niiimage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="193" column="39" lean-forward="false" selection-start-line="193" selection-start-column="39" selection-end-line="193" selection-end-column="39" />
+        <state relative-caret-position="418">
+          <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/forstu_render_volume.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-850">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/forstu_render_volume_imagegrad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="e#32#53#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/niftyio.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
           <folding />
         </state>
       </provider>
