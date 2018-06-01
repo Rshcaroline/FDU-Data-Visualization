@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92118cfe-6fda-4165-b540-5a7fb5438373" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/HW/HW5/local_affine.py" afterPath="$PROJECT_DIR$/HW/HW5/local_affine.py" />
-      <change beforePath="$PROJECT_DIR$/HW/HW5/local_affine_modified.py" afterPath="$PROJECT_DIR$/HW/HW5/local_affine_modified.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,8 +38,8 @@
       <file leaf-file-name="local_affine_modified.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/HW/HW5/local_affine_modified.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="113" column="14" lean-forward="true" selection-start-line="113" selection-start-column="14" selection-end-line="113" selection-end-column="14" />
+            <state relative-caret-position="19">
+              <caret line="113" column="14" lean-forward="false" selection-start-line="113" selection-start-column="14" selection-end-line="113" selection-end-column="14" />
               <folding>
                 <element signature="e#25#46#0" expanded="true" />
               </folding>
@@ -61,7 +60,7 @@
       <file leaf-file-name="morphing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code/morphing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1118">
+            <state relative-caret-position="4446">
               <caret line="238" column="4" lean-forward="false" selection-start-line="238" selection-start-column="4" selection-end-line="238" selection-end-column="4" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -73,7 +72,7 @@
       <file leaf-file-name="forstu_render_surface_niiimage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/forstu_render_surface_niiimage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="158">
+            <state relative-caret-position="855">
               <caret line="46" column="36" lean-forward="false" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -85,7 +84,7 @@
       <file leaf-file-name="forstu_render_volume.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/forstu_render_volume.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-205">
+            <state relative-caret-position="1292">
               <caret line="70" column="55" lean-forward="false" selection-start-line="70" selection-start-column="55" selection-end-line="70" selection-end-column="55" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
@@ -97,7 +96,7 @@
       <file leaf-file-name="forstu_render_volume_imagegrad.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/forstu_render_volume_imagegrad.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-224">
+            <state relative-caret-position="1406">
               <caret line="76" column="35" lean-forward="false" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
               <folding>
                 <element signature="e#32#53#0" expanded="true" />
@@ -200,7 +199,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -223,6 +221,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -396,19 +395,17 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22317597" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38331318" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38331318" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22031474" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49785408" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="121" y="22" width="1319" height="878" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32769045" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -418,6 +415,7 @@
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26037195" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -692,7 +690,7 @@
     <entry file="file://$PROJECT_DIR$/HW/HW5/morphing.py" />
     <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/forstu_render_surface_niiimage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="158">
+        <state relative-caret-position="855">
           <caret line="46" column="36" lean-forward="false" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
@@ -702,7 +700,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/forstu_render_volume.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-205">
+        <state relative-caret-position="1292">
           <caret line="70" column="55" lean-forward="false" selection-start-line="70" selection-start-column="55" selection-end-line="70" selection-end-column="55" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
@@ -714,13 +712,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
           <caret line="626" column="8" lean-forward="false" selection-start-line="626" selection-start-column="8" selection-end-line="626" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Labs/6 for_stu_surface_volume_render/forstu_render_volume_imagegrad.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-224">
+        <state relative-caret-position="1406">
           <caret line="76" column="35" lean-forward="false" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
           <folding>
             <element signature="e#32#53#0" expanded="true" />
@@ -738,7 +735,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HW/HW5/Reference code/Deformation-On-Human-Face-master/code/morphing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1118">
+        <state relative-caret-position="4446">
           <caret line="238" column="4" lean-forward="false" selection-start-line="238" selection-start-column="4" selection-end-line="238" selection-end-column="4" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -756,8 +753,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/HW/HW5/local_affine_modified.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="113" column="14" lean-forward="true" selection-start-line="113" selection-start-column="14" selection-end-line="113" selection-end-column="14" />
+        <state relative-caret-position="19">
+          <caret line="113" column="14" lean-forward="false" selection-start-line="113" selection-start-column="14" selection-end-line="113" selection-end-column="14" />
           <folding>
             <element signature="e#25#46#0" expanded="true" />
           </folding>

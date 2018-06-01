@@ -1,52 +1,49 @@
+import sys
 from skimage import io
 from matplotlib import pyplot as plt
 import math
 import numpy as np
+import copy
 
+# 读取图片
 srcImage = io.imread("zxh-ape.jpg")
 tarImage = io.imread("ape.png")[...,:3]
 
-srcAnchors = [(348, 463), (483, 422), (474, 535),
-              (391, 320), (389, 421), (375, 522), (363, 612),
-              (566, 411), (575, 457), (579, 486), (568, 523), (548, 569)]
+# 选定锚点
+if len(sys.argv) <2 or sys.argv[1] == str(1):
+    # 稀疏的锚点 `python local_affine.py 1` 可以获取
+    srcAnchors = [(348, 463), (483, 422), (474, 535),
+                  (391, 320), (389, 421), (375, 522), (363, 612),
+                  (566, 411), (575, 457), (579, 486), (568, 523), (548, 569)]
+    tarAnchors = [(27, 127), (185, 77), (189, 166),
+                  (23, 68), (40, 114), (37, 145), (26, 188),
+                  (176, 49), (222, 80), (236, 126), (222, 168), (197, 198)]
 
-tarAnchors = [(27, 127), (185, 77), (189, 166),
-              (23, 68), (40, 114), (37, 145), (26, 188),
-              (176, 49), (222, 80), (236, 126), (222, 168), (197, 198)]
+else:
+    # 稠密的锚点 `python local_affine.py 2` 可以获取
+    srcAnchors = [(382, 349), (381, 384), (383, 420), (369, 524), (360, 559),
+                    (358, 594), (481, 425), (472, 536), (469, 477), (560, 412), (582, 431),
+                     (598, 455), (602, 490), (592, 523), (572, 545), (546, 561)]
+    tarAnchors = [(25, 66), (27, 87), (39, 114), (36, 143), (24, 167), (22, 189),
+                    (174, 74), (175, 166), (184, 118), (192, 54), (214, 69), (230, 93),
+                     (231, 119), (224, 159), (212, 181), (196, 198)]
 
-# srcAnchors = [(382, 349), (381, 384), (383, 420), (369, 524), (360, 559), (358, 594), (481, 425), (472, 536), (469, 477), (560, 412), (582, 431), (598, 455), (602, 490), (592, 523), (572, 545), (546, 561)]
-# tarAnchors = [(25, 66), (27, 87), (39, 114), (36, 143), (24, 167), (22, 189), (174, 74), (175, 166), (184, 118), (192, 54), (214, 69), (230, 93), (231, 119), (224, 159), (212, 181), (196, 198)]
-
-
-def annotation_visualization():
-    for anchor in srcAnchors:
-        x, y = anchor
-        for x_ in range(x-5, x+5):
-            for y_ in range(y-5, y+5):
-                srcImage[x_, y_, :] = 255
-
-    for anchor in tarAnchors:
-        x, y = anchor
-        for x_ in range(x-5, x+5):
-            for y_ in range(y-5, y+5):
-                tarImage[x_, y_, :] = 255
-
-    io.imshow(srcImage)
-    plt.show()
-    io.imshow(tarImage)
-    plt.show()
+############### 辅助函数 ##############
 
 def _distance(coord1, coord2):
+    # 计算两点的欧式距离
     x1, y1 = coord1
     x2, y2 = coord2
     return math.sqrt((x2-x1)**2 + (y2-y1)**2)
 
 def _local_affine(coord1, tarAnchors, srcAnchors, linearFunc):
+    # 对于锚点进行线性变换
+    # 对于非锚点进行加权线性变换
     for i, anchor in enumerate(tarAnchors):
         if coord1 == anchor:
             return srcAnchors[i]
     else:
-        e = 2.5
+        e = 2.5 # 距离的指数
         dis = [(1/_distance(coord1, c))**e for c in tarAnchors]
         disSum = sum(dis)
 
@@ -54,12 +51,13 @@ def _local_affine(coord1, tarAnchors, srcAnchors, linearFunc):
 
         for d, linear_affine in zip(dis, linearFunc):
             x_, y_ = linear_affine(coord1)
-            coordX.append((d/disSum)*x_)
-            coordY.append((d/disSum)*y_)
+            coordX.append((d/disSum)*x_) # x点加权线性变换
+            coordY.append((d/disSum)*y_) # y点加权线性变换
 
-        return (sum(coordX), sum(coordY))
+        return (sum(coordX), sum(coordY)) #坐标局部仿射结果
 
 def _pick_pixel(coord, srcImage):
+    # 双线性插值取像素
     r, c = coord
     h, w, _ = srcImage.shape
 
@@ -79,7 +77,10 @@ def _pick_pixel(coord, srcImage):
         res = (r2 - r) / (r2 - r1) * f1 + (r - r1) / (r2 -r1) * f2
     return res
 
+############### 核心函数 ##############
+
 def linear_func(coord1, coord2):
+    # 线性变换函数，即记录(x,y)的偏移项bias_x和bias_y
     bias_x = coord2[0] - coord1[0]
     bias_y = coord2[1] - coord1[1]
     def _linear_func(coord1):
@@ -87,35 +88,60 @@ def linear_func(coord1, coord2):
         return ((x+bias_x), (y+bias_y))
     return _linear_func
 
-def local_affine_backward(srcImage, tarImage, srcAnchors, tarAnchors):
-    linearFuncForward = [linear_func(c1, c2) for c1, c2 in zip(tarAnchors, srcAnchors)]
-    linearFuncBackward = [linear_func(c2, c1) for c1, c2 in zip(tarAnchors, srcAnchors)]
-
-    height, width, _ = srcImage.shape
-    temp = np.zeros_like(srcImage)
-
-    for row in range(height):
-        for col in range(width):
-            coord = _local_affine((row, col), srcAnchors, tarAnchors, linearFuncBackward)
-            coord = _local_affine(coord, tarAnchors, srcAnchors, linearFuncForward)
-            temp[row, col, :] = _pick_pixel(coord, srcImage)
-    return temp
-
 def local_affine_forward(srcImage, tarImage, srcAnchors, tarAnchors):
+    # 前向图局部仿射(即上课内容)，即该程序的主函数
+    # 获取锚点的线性变换
     linearFuncForward = [linear_func(c1, c2) for c1, c2 in zip(tarAnchors, srcAnchors)]
 
-    height, width, _ = tarImage.shape
-    print(srcImage.shape)
-    print(tarImage.shape)
+    tarImage_ = copy.deepcopy(tarImage)
+    height, width, _ = tarImage_.shape
 
+    # 遍历目标图的每一个像素，对该像素进行局部仿射(加权线性变换)，从而获取在源图的坐标
     for row in range(height):
         for col in range(width):
             coord = _local_affine((row, col), tarAnchors, srcAnchors, linearFuncForward)
-            tarImage[row, col, :] = _pick_pixel(coord, srcImage)
-    return tarImage
+            # 通过局部仿射获取源图坐标，在目标图坐标上填源图坐标的像素值
+            tarImage_[row, col, :] = _pick_pixel(coord, srcImage)
 
+    # 返回局部仿射图
+    return tarImage_
+
+def annotation_visualization(image):
+    # 目标图、源图、结果图可视化
+    srcImage_ = copy.deepcopy(srcImage)
+    tarImage_ = copy.deepcopy(tarImage)
+
+    # 探测锚点，变为蓝色
+    for anchor in srcAnchors:
+        x, y = anchor
+        for x_ in range(x-5, x+5):
+            for y_ in range(y-5, y+5):
+                srcImage_[x_, y_, 2] = 255
+                srcImage_[x_, y_, :2] = 0
+
+    for anchor in tarAnchors:
+        x, y = anchor
+        for x_ in range(x-2, x+2):
+            for y_ in range(y-2, y+2):
+                tarImage_[x_, y_, 2] = 255
+                tarImage_[x_, y_, :2] = 0
+
+    # 显示图片
+    plt.figure(figsize=(15,5))
+    plt.subplot(131)
+    plt.title("Target Image")
+    plt.imshow(tarImage_)
+
+    plt.subplot(132)
+    plt.title("Source Image")
+    plt.imshow(srcImage_)
+
+    plt.subplot(133)
+    plt.title("Local Affine Image")
+    plt.imshow(image)
+
+    plt.show()
 
 if __name__ == "__main__":
-    # io.imshow(local_affine_forward(srcImage, tarImage, srcAnchors, tarAnchors))
-    annotation_visualization()
-    plt.show()
+    image = local_affine_forward(srcImage, tarImage, srcAnchors, tarAnchors)
+    annotation_visualization(image)
