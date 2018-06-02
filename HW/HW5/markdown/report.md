@@ -1,5 +1,5 @@
 ---
-typora-copy-images-to: ../markdown
+![BB4E2C22-7AD4-4260-BE9F-46B641E4726A-55966-00001B076C7FF943_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/BB4E2C22-7AD4-4260-BE9F-46B641E4726A-55966-00001B076C7FF943_tmp.JPG)![AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp.JPG)![AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp.JPG)typora-copy-images-to: ../markdown
 ---
 
 
@@ -12,7 +12,7 @@ typora-copy-images-to: ../markdown
 
 **姓名：** 王艺楷、冉诗菡、何占魁
 
-**学号：** 153071XXXXX、15307130424、51307130175
+**学号：** 15300180076、15307130424、51307130175
 
 ---
 
@@ -79,7 +79,27 @@ typora-copy-images-to: ../markdown
 
    -  **标记点选取：** 我们通过 `PyLab` 的标定函数`ginput()`标定了两张图片的对应点。为了探究标记点疏密程度对局部仿射算法的影响，我们人工标注了稀疏和稠密两套标记点集合：
 
+      -  稀疏标注：每只眼睛2个点；鼻子3个点；嘴巴5个点；共12个点。![F05CF988-713A-4ACE-A072-36D365A1241D](F05CF988-713A-4ACE-A072-36D365A1241D.png)
 
+
+      -  稠密标注：每只眼睛3个点；鼻子3个点；嘴巴7个点；共16个点。![6BBF9E4E-A844-48D3-9D97-2AA164005EE8](6BBF9E4E-A844-48D3-9D97-2AA164005EE8.png)
+
+3. ##### 变形结果：
+
+   针对上文提到的两个研究问题*“寻找映射”*和*“寻找标定”*，我们进行了两组探究实验。
+
+   - 对于*映射f*，我们探究了参数e的值对于变形结果的影响，发现随着e值变大，形变的力度越大。
+   - 对于*标定C*，我们则分别探究了稀疏标定和稠密标定对于变形结果的影响，稠密标定的形变效果更自然。
+     - **对于嘴唇：**稠密标定将嘴唇的特征点数量增至 7 个，即用六等分替代原来的四等分。且进一步选取了离鼻子较远的嘴唇下轮廓进行特征点定位。这样的改进帮助嘴唇变得更加平滑。
+     - **对于眼睛：**稠密标定加入了眼睛中心作为特征点，这样的改进可以帮助解决眼睛形状的扭曲问题。
+     - **对于鼻子：**稠密标定加入了鼻头作为特征点，这样的改进让鼻子从“n”型变为了“m”型。
+
+|          |                            e=0.5                             |                            e=1.0                             |                            e=1.5                             |                            e=2.0                             |                            e=2.5                             |                            e=3.0                             |
+| :------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
+| 稀疏标定 | ![BF7765AD-4B4F-436F-A660-FA63366C26E7-55966-00001B0768EE3102_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/BF7765AD-4B4F-436F-A660-FA63366C26E7-55966-00001B0768EE3102_tmp.JPG) | ![BB4E2C22-7AD4-4260-BE9F-46B641E4726A-55966-00001B076C7FF943_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/BB4E2C22-7AD4-4260-BE9F-46B641E4726A-55966-00001B076C7FF943_tmp.JPG) | ![9471816E-BDB5-4880-A1BF-7D4F44A3F55C-55966-00001B076FDEB390_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/9471816E-BDB5-4880-A1BF-7D4F44A3F55C-55966-00001B076FDEB390_tmp.JPG) | ![60AA8509-64A3-4E57-94C4-B093993E1CAD-55966-00001B077316D8A7_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/60AA8509-64A3-4E57-94C4-B093993E1CAD-55966-00001B077316D8A7_tmp.JPG) | ![AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp.JPG) | ![15A46487-9E52-4632-B73E-780869D240FA-55966-00001B077918BD33_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/15A46487-9E52-4632-B73E-780869D240FA-55966-00001B077918BD33_tmp.JPG) |
+| 稠密标定 | ![8A891903-6E5F-45C4-A2CA-0DCC263AA7C2-55966-00001B0737C96685_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/8A891903-6E5F-45C4-A2CA-0DCC263AA7C2-55966-00001B0737C96685_tmp.JPG) | ![F98468AB-0263-47D5-9593-49C0F8FC4B6A-55966-00001B073CB92A5E_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/F98468AB-0263-47D5-9593-49C0F8FC4B6A-55966-00001B073CB92A5E_tmp.JPG) | ![9FC025CC-A553-46F6-83F8-2924C508095E-55966-00001B07414146C3_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/9FC025CC-A553-46F6-83F8-2924C508095E-55966-00001B07414146C3_tmp.JPG) | ![08FDF8BA-35EC-47FF-B575-F97560D04077-55966-00001B074653B130_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/08FDF8BA-35EC-47FF-B575-F97560D04077-55966-00001B074653B130_tmp.JPG) | ![35B69E4D-6443-4EAF-BEEA-CC5A46963EE2-55966-00001B074B46DE34_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/35B69E4D-6443-4EAF-BEEA-CC5A46963EE2-55966-00001B074B46DE34_tmp.JPG) | ![4E9903D4-E354-49AB-BF15-9002EA3F1589-55966-00001B074FEB98C5_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/4E9903D4-E354-49AB-BF15-9002EA3F1589-55966-00001B074FEB98C5_tmp.JPG) |
+
+3. 
 
 
 #### 三、代码结构：
