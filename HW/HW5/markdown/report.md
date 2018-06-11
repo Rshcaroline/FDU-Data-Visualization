@@ -1,10 +1,6 @@
 ---
-![BB4E2C22-7AD4-4260-BE9F-46B641E4726A-55966-00001B076C7FF943_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/BB4E2C22-7AD4-4260-BE9F-46B641E4726A-55966-00001B076C7FF943_tmp.JPG)![AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp.JPG)![AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp.JPG)typora-copy-images-to: ../markdown
+typora-copy-images-to: ../markdown
 ---
-
-
-
-
 
 # 数据可视化作业5
 
@@ -12,9 +8,11 @@
 
 **姓名：** 王艺楷、冉诗菡、何占魁
 
-**学号：** 15300180076、15307130424、51307130175
+**学号：** 15300180076、15307130424、15307130175
 
 ---
+
+
 
 ## 任务：局部仿射
 
@@ -30,8 +28,8 @@
 
    在本任务中，庄老师图像被视为源图像(Source Image)称为$S$，狒狒的图像作为目标图像(Targe Image)，称为$T$。通过在图像$S$和$T$中标定对应点或区域，使源图像$S$变形得到和目标图像$T$相似图形结构。从两个角度入手，问题可形式化定义为：
 
-   -  **寻找映射$f$：**已知点或区域集合为$C_S=\{c_1…c_n | c_i \in S.coords\}$与$C_T=\{c_1…c_n | c_i \in T.coords\}$ 。对于$T$图像的任一坐标点$c_T\in T.coords$，如何定义$f: c_T\rightarrow c_S $的映射关系$f$，使得形变图像$T'$具有优秀的效果？
-   -  **寻找标定$C$：**已知对于$T$的任意点映射关系$f: c_T\rightarrow c_S$，此处$c_T\in T.coords$且$c_S\in S.coords$。如何定义对应点或者区域的集合 $C_S=\{c_1…c_n | c_i \in S.coords\}$与$C_T=\{c_1…c_n | c_i \in T.coords\}$ ，使得形变图像$T'$具有优秀的效果？
+   -  **寻找映射$f$：**已知点或区域集合为$C_S=\{c_1…c_n | c_i \in S.coords\}$与$C_T=\{c_1…c_n | c_i \in T.coords\}$ 。我们的目的是，构造一个映射$f$，使得对$T$图像的任一坐标点$c_T\in T.coords$，满足$f(c_T)=c_S $, 进一步地，对于狒狒脸部的各区域，如眼睛、鼻子、嘴巴等，$f$能够将其近似的映射到人脸的对应区域。
+   -  **寻找标定$C$：**已知对于$T$的任意点映射关系$f: c_T\rightarrow c_S$，此处$c_T\in T.coords$且$c_S\in S.coords$。如何定义对应点或者区域的集合 $C_S=\{c_1…c_n | c_i \in S.coords\}$与$C_T=\{c_1…c_n | c_i \in T.coords\}$ ，使得满足第一个问题中条件的映射$f$可以被简单的显式函数近似表达。
 
 2. ##### 数据描述：
 
@@ -41,8 +39,6 @@
    -  **目标图像：** 狒狒的“肖像照” `ape.png`
 
 ![DA679486-4130-426C-AE85-0DEF1F958054](DA679486-4130-426C-AE85-0DEF1F958054.png)
-
-
 
 #### 二、数据处理：
 
@@ -71,48 +67,169 @@
    -  **通道选取：** 因为该任务的目标图像 `ape.png`有四个通道(R, G, B, alpha)，源图像`zxh-ape.jpg`有三个通道(R, G, B)，因此选取前三个通道:
 
       ```python
-      from skimage import io
-      # 读取图片
       srcImage = io.imread("zxh-ape.jpg")
       tarImage = io.imread("ape.png")[...,:3]
       ```
 
    -  **标记点选取：** 我们通过 `PyLab` 的标定函数`ginput()`标定了两张图片的对应点。为了探究标记点疏密程度对局部仿射算法的影响，我们人工标注了稀疏和稠密两套标记点集合：
 
-      -  稀疏标注：每只眼睛2个点；鼻子3个点；嘴巴5个点；共12个点。![F05CF988-713A-4ACE-A072-36D365A1241D](F05CF988-713A-4ACE-A072-36D365A1241D.png)
+      -  稀疏标定：每只眼睛2个点；鼻子3个点；嘴巴5个点；共12个点。![F05CF988-713A-4ACE-A072-36D365A1241D](F05CF988-713A-4ACE-A072-36D365A1241D.png)
+      -  稠密标定：每只眼睛3个点；鼻子3个点；嘴巴7个点；共16个点。![6BBF9E4E-A844-48D3-9D97-2AA164005EE8](6BBF9E4E-A844-48D3-9D97-2AA164005EE8.png)
 
 
-      -  稠密标注：每只眼睛3个点；鼻子3个点；嘴巴7个点；共16个点。![6BBF9E4E-A844-48D3-9D97-2AA164005EE8](6BBF9E4E-A844-48D3-9D97-2AA164005EE8.png)
 
 3. ##### 变形结果：
 
-   针对上文提到的两个研究问题*“寻找映射”*和*“寻找标定”*，我们进行了两组探究实验。
+   针对上文提到的两个研究问题*寻找映射$f$*和*寻找标定$C$*，我们进行了两组探究实验。
+|            |                  e=0.5                   |                  e=1.0                   |                  e=1.5                   |                  e=2.0                   |                  e=2.5                   |                  e=3.0                   |
+| :--------: | :--------------------------------------: | :--------------------------------------: | :--------------------------------------: | :--------------------------------------: | :--------------------------------------: | :--------------------------------------: |
+| 稀疏<br />标定 | ![BF7765AD-4B4F-436F-A660-FA63366C26E7-55966-00001B0768EE3102_tmp](BF7765AD-4B4F-436F-A660-FA63366C26E7-55966-00001B0768EE3102_tmp.JPG) | ![BB4E2C22-7AD4-4260-BE9F-46B641E4726A-55966-00001B076C7FF943_tmp](BB4E2C22-7AD4-4260-BE9F-46B641E4726A-55966-00001B076C7FF943_tmp.JPG) | ![9471816E-BDB5-4880-A1BF-7D4F44A3F55C-55966-00001B076FDEB390_tmp](9471816E-BDB5-4880-A1BF-7D4F44A3F55C-55966-00001B076FDEB390_tmp.JPG) | ![60AA8509-64A3-4E57-94C4-B093993E1CAD-55966-00001B077316D8A7_tmp](60AA8509-64A3-4E57-94C4-B093993E1CAD-55966-00001B077316D8A7_tmp.JPG) | ![AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp](AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp.JPG) | ![15A46487-9E52-4632-B73E-780869D240FA-55966-00001B077918BD33_tmp](15A46487-9E52-4632-B73E-780869D240FA-55966-00001B077918BD33_tmp.JPG) |
+| 稠密<br />标定 | ![8A891903-6E5F-45C4-A2CA-0DCC263AA7C2-55966-00001B0737C96685_tmp](8A891903-6E5F-45C4-A2CA-0DCC263AA7C2-55966-00001B0737C96685_tmp.JPG) | ![F98468AB-0263-47D5-9593-49C0F8FC4B6A-55966-00001B073CB92A5E_tmp](F98468AB-0263-47D5-9593-49C0F8FC4B6A-55966-00001B073CB92A5E_tmp.JPG) | ![9FC025CC-A553-46F6-83F8-2924C508095E-55966-00001B07414146C3_tmp](9FC025CC-A553-46F6-83F8-2924C508095E-55966-00001B07414146C3_tmp.JPG) | ![08FDF8BA-35EC-47FF-B575-F97560D04077-55966-00001B074653B130_tmp](08FDF8BA-35EC-47FF-B575-F97560D04077-55966-00001B074653B130_tmp.JPG) | ![35B69E4D-6443-4EAF-BEEA-CC5A46963EE2-55966-00001B074B46DE34_tmp](35B69E4D-6443-4EAF-BEEA-CC5A46963EE2-55966-00001B074B46DE34_tmp.JPG) | ![4E9903D4-E354-49AB-BF15-9002EA3F1589-55966-00001B074FEB98C5_tmp](4E9903D4-E354-49AB-BF15-9002EA3F1589-55966-00001B074FEB98C5_tmp.JPG) |
 
-   - 对于*映射f*，我们探究了参数e的值对于变形结果的影响，发现随着e值变大，形变的力度越大。
-   - 对于*标定C*，我们则分别探究了稀疏标定和稠密标定对于变形结果的影响，稠密标定的形变效果更自然。
-     - **对于嘴唇：**稠密标定将嘴唇的特征点数量增至 7 个，即用六等分替代原来的四等分。且进一步选取了离鼻子较远的嘴唇下轮廓进行特征点定位。这样的改进帮助嘴唇变得更加平滑。
-     - **对于眼睛：**稠密标定加入了眼睛中心作为特征点，这样的改进可以帮助解决眼睛形状的扭曲问题。
-     - **对于鼻子：**稠密标定加入了鼻头作为特征点，这样的改进让鼻子从“n”型变为了“m”型。
+##### 
 
-|          |                            e=0.5                             |                            e=1.0                             |                            e=1.5                             |                            e=2.0                             |                            e=2.5                             |                            e=3.0                             |
-| :------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| 稀疏标定 | ![BF7765AD-4B4F-436F-A660-FA63366C26E7-55966-00001B0768EE3102_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/BF7765AD-4B4F-436F-A660-FA63366C26E7-55966-00001B0768EE3102_tmp.JPG) | ![BB4E2C22-7AD4-4260-BE9F-46B641E4726A-55966-00001B076C7FF943_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/BB4E2C22-7AD4-4260-BE9F-46B641E4726A-55966-00001B076C7FF943_tmp.JPG) | ![9471816E-BDB5-4880-A1BF-7D4F44A3F55C-55966-00001B076FDEB390_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/9471816E-BDB5-4880-A1BF-7D4F44A3F55C-55966-00001B076FDEB390_tmp.JPG) | ![60AA8509-64A3-4E57-94C4-B093993E1CAD-55966-00001B077316D8A7_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/60AA8509-64A3-4E57-94C4-B093993E1CAD-55966-00001B077316D8A7_tmp.JPG) | ![AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/AF7420DC-CEC3-4AA8-85E7-48586CBA98C0-55966-00001B077604CF0A_tmp.JPG) | ![15A46487-9E52-4632-B73E-780869D240FA-55966-00001B077918BD33_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/15A46487-9E52-4632-B73E-780869D240FA-55966-00001B077918BD33_tmp.JPG) |
-| 稠密标定 | ![8A891903-6E5F-45C4-A2CA-0DCC263AA7C2-55966-00001B0737C96685_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/8A891903-6E5F-45C4-A2CA-0DCC263AA7C2-55966-00001B0737C96685_tmp.JPG) | ![F98468AB-0263-47D5-9593-49C0F8FC4B6A-55966-00001B073CB92A5E_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/F98468AB-0263-47D5-9593-49C0F8FC4B6A-55966-00001B073CB92A5E_tmp.JPG) | ![9FC025CC-A553-46F6-83F8-2924C508095E-55966-00001B07414146C3_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/9FC025CC-A553-46F6-83F8-2924C508095E-55966-00001B07414146C3_tmp.JPG) | ![08FDF8BA-35EC-47FF-B575-F97560D04077-55966-00001B074653B130_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/08FDF8BA-35EC-47FF-B575-F97560D04077-55966-00001B074653B130_tmp.JPG) | ![35B69E4D-6443-4EAF-BEEA-CC5A46963EE2-55966-00001B074B46DE34_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/35B69E4D-6443-4EAF-BEEA-CC5A46963EE2-55966-00001B074B46DE34_tmp.JPG) | ![4E9903D4-E354-49AB-BF15-9002EA3F1589-55966-00001B074FEB98C5_tmp](/Users/ranshihan/Coding/FDU-Data-Visualization/HW/HW5/markdown/4E9903D4-E354-49AB-BF15-9002EA3F1589-55966-00001B074FEB98C5_tmp.JPG) |
+4. ##### 结果分析:
 
-3. 
+-  对于*映射f*，我们探究了参数$e$的值对于变形结果的影响，发现随着$e$值变大，形变的力度越大。
+-  对于*标定$C$*，我们则分别探究了稀疏标定和稠密标定对于变形结果的影响，稠密标定的形变效果更自然。
+   -  **对于嘴唇：**稠密标定将嘴唇的特征点数量增至 7 个，即用六等分替代原来的四等分。且进一步选取了离鼻子较远的嘴唇下轮廓进行特征点定位。这样的改进帮助嘴唇变得更加平滑。
+   -  **对于眼睛：**稠密标定加入了眼睛中心作为特征点，这样的改进可以帮助解决眼睛形状的扭曲问题。
+   -  **对于鼻子：**稠密标定加入了鼻头作为特征点，这样的改进让鼻子从$n$型变为了$m$型。
 
+   ​
 
 #### 三、代码结构：
+
+1. ##### 结构简述：
+
+   ```python
+   # 读取图片
+   srcImage = io.imread("zxh-ape.jpg")
+   tarImage = io.imread("ape.png")[...,:3]
+   # 选定锚点
+   srcAnchors = [(348, 463), (483, 422), (474, 535), ...]
+   tarAnchors = [(27, 127), (185, 77), (189, 166), ...]
+
+   ############### 辅助函数 ##############
+   def _distance(coord1, coord2):
+       # 计算两点的欧式距离。对应为文档算法中的d
+   def _linear_func(coord1, coord2):
+       # 线性变换函数，即记录(x,y)的偏移项bias_x和bias_y。对应为文档算法中的G_i
+   def _pick_pixel(coord, srcImage):
+       # 双线性插值取像素。对应为文档算法中的h(c,I)
+   def _local_affine(coord1, tarAnchors, srcAnchors, linearFunc):
+       # 对于锚点进行线性变换，对于非锚点进行加权线性变换，对应为文档算法中的f
+       
+   ################ 核心函数 #############
+   def local_affine_forward(srcImage, tarImage, srcAnchors, tarAnchors):
+       # 前向图局部仿射(即上课内容)，即该程序的主函数
+       # 获取锚点的线性变换，返回仿射变换图
+   def annotation_visualization(image):
+       # 目标图、源图、结果图可视化
+       
+   if __name__ == "__main__":
+       image = local_affine_forward(srcImage, tarImage, srcAnchors, tarAnchors)
+       annotation_visualization(image)
+   ```
+
+2. ##### 函数详述：
+
+   1. ##### 辅助函数：
+
+      **辅助函数**即实现算法的工具函数，是对算法描述中出现的映射关系的代码化，同时具有模块性，可以进行替换调整，以探究不同的效果，该代码中有：
+
+      -  `_distance(coord1, coord2):`
+         计算两个坐标之间的距离，对应算法描述中的$d_i$函数。我们实现的是**欧几里得距离。**
+
+      -  `_linear_func(coord1, coord2):`
+         获得两个坐标的线性变换关系，对应算法描述中$ c_T\in C_T$时的线性变换函数$G_i: c_{Ti}\rightarrow c_{Si}$，这里实现的是**平移变换。**
+
+      -  `_pick_pixel(coord, srcImage):`
+
+         获取图片`srcImage`的坐标`coord`的像素值，对应算法中描述的函数$h(c,I)$。这里当坐标超出图片尺寸时，对坐标进行截取。其他情况下，如果坐标是整数则直接获取像素值，否则进行双线性插值，获取像素值。
+
+      -  `_local_affine(coord1, tarAnchors, srcAnchors, linearFunc):`
+         已知对应点`tarAnchors`和`srcAnchors`，获取了对应点的线性变换函数`linearFunc`。对坐标`coord1`进行**局部仿射获取新坐标**的函数，对应算法中的$f:c_T\rightarrow c_S$。
+
+   2. ##### 核心函数：
+
+      **核心函数**是实现算法的主要函数，接口暴露给用户直接调用，不具有模块性。该代码中包含：
+
+      -  `local_affine_forward(srcImage, tarImage, srcAnchors, tarAnchors):`
+         **前向局部仿射**函数，对于给定的源图像和目标图像、对应点或对应区域，进行上述算法描述的变形，最后返回变形后的图像。该函数用到了所有的辅助函数，是整个局部仿射算法的`main`函数。
+
+      -  `annotation_visualization(image):`
+         对标定图像、源图像、变形图像进行可视化显示。
+         ![F9EFD91E-6FF3-4B2E-8650-CDE43461BA44](F9EFD91E-6FF3-4B2E-8650-CDE43461BA44.png)
 
 
 
 #### 四、开发环境：
+-  **系统环境：**macOS High Serria, Windows 10
+-  **开发语言：**Python>=3.5
+-  **软件包：**Numpy>=1.13.0,  Scikit-image>=0.13, opencv>=3.3.0
 
 
 
-#### 五、可执行文件使用 
+
+#### 五、可执行文件使用： 
+
+-  **使用环境：**macOS
+
+-  **文件名称**：稀疏标定：`locally_affine_1`；稠密标定：`locally_affine_2`
+
+-  **使用方式：**即输入图片路径即可，仅限于庄老师和狒狒图片，在文件夹中提供：
+
+   1. 打开可执行文件，若macOS因安全性限制不能运行文件，则通过 *系统偏好设置-安全性和隐私-允许从以下位置加载应用* 解除限制。
+
+   2. 在输入框中输入庄老师图片路径、另起一行输入狒狒图片路径：
+      注：推荐使用绝对路径，且**顺序不能颠倒。**
+
+      ![B3E3ED71-9B32-4AAF-89F2-2F5A42D6F831](B3E3ED71-9B32-4AAF-89F2-2F5A42D6F831.png)
+
+   3. 再按回车之后，等待10秒左右，获得结果图：
+
+      ![079FF273-D27D-40E8-8C0B-83FD7BEED0F6](079FF273-D27D-40E8-8C0B-83FD7BEED0F6.png)
+
+      ​
+
+   4. 再按任意键，结果图消失。
+
+-   **补充说明：** 因为`pyinstaller`打包依赖问题，我们原本使用`Scikit-image`图片处理库，现改成了`opencv`库。不过对于程序效果没有影响，如果想通过脚本执行我们程序，可以运行`python local_affine.py $NUM`，当`$NUM`为1，选取稀疏标定，`$NUM`为2时选取稠密标定。
 
 
 
-#### 六、合作者贡献
+#### 六、一些尝试：
+
+-  ##### 对映射$f$的改进：
+
+   在本文中，我们使用的映射是对刚性变换的线性组合，而基于点插值构造的一般映射还包含基函数的线性组合。基于此，我们对函数f进行修改。具体的：
+   $$
+   f(c)=\sum^n_{i=1}w_i(c)G_i(c)+\sum_{j=1}^nb_j\sigma(c,c_j)
+   $$
+   假设我们在$C_s$与$C_t$中各标记了n个点，由我们对f的定义可得n个等式，可以将其重写为矩阵方程
+   $$
+   S=GT+\Sigma B
+   $$
+   其中$S=(c_{s1},\ldots,c_{sn})^T,T=(c_{t1},\ldots,c_{tn})^T,B=(b_1,\ldots,b_n)^T,\Sigma(i,j)=\sigma(c_{ti},c_{tj})$,因此可以求出系数
+   $$
+   B=\Sigma^{-1}(S-GT)
+   $$
+   由此定义的f理论上拥有更好的变换效果。
+
+-  ##### 自动标定$API$：
+
+   对人脸特征点尝试了`Face++`的自动标注API，但是考虑到不能标猩猩的点，以及API调用有次数限制，我们在最后的程序中仍然只使用了我们的手动标注点。
+
+   #### 
+
+#### 七、合作者贡献：
+
+-  **王艺楷：**`Deformations Incorporating Rigid Structures` 论文阅读、算法实现；报告撰写。
+
+-  **冉诗菡：**自动标定API代码测试；`locally_affine`参数探索；报告撰写。
+
+-  **何占魁：** `locally_affine.py` 代码实现；可执行文件打包；报告撰写。
+
+   ​
 
